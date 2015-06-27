@@ -31,6 +31,8 @@
 		<link href="static/vendor/select2/select2.min.css" rel="stylesheet" media="screen">
 		<link href="static/vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
 		<link href="static/vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
+		<link href="static/vendor/select2/select2.min.css" rel="stylesheet" media="screen">
+		<link href="static/vendor/DataTables/css/DT_bootstrap.css" rel="stylesheet" media="screen">
 		<!-- end: MAIN CSS -->
 		<!-- start: CLIP-TWO CSS -->
 		<link rel="stylesheet" href="static/assets/css/styles.css">
@@ -102,8 +104,8 @@
 								</a>
 								<ul class="sub-menu">
 									<li>
-										<a ui-sref="home">
-											<span class="title"> Home </span>
+										<a ui-sref="members">
+											<span class="title"> View Members </span>
 										</a>
 									</li>
 									<li>
@@ -1583,18 +1585,27 @@
 		<script src="static/vendor/select2/select2.min.js"></script>
 		<script src="static/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 		<script src="static/vendor/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+		<script src="static/vendor/select2/select2.min.js"></script>
+		<script src="static/vendor/DataTables/jquery.dataTables.min.js"></script>
 		<!-- start: CLIP-TWO JAVASCRIPTS -->
 		<script src="static/assets/js/main.js"></script>
 		<!-- start: JavaScript Event Handlers for this page -->
-		<script src="static/assets/js/form-elements.js"></script>
+		<script src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+		<script src="http://cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.min.js"></script>
+		<script src="static/assets/js/table-data.js"></script>
 
 		<script>
 			jQuery(document).ready(function() {
 				Main.init();
 				Index.init();
 				FormElements.init();
+				TableData.init();
 			});
+		</script>
+		<script>
+			$(document).ready(function() {
+
+			} );
 		</script>
 		<!-- end: JavaScript Event Handlers for this page -->
 		<!-- end: CLIP-TWO JAVASCRIPTS -->

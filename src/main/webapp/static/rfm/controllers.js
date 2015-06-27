@@ -37,8 +37,29 @@ angular.module('esavvy.controllers', [])
                 $scope.errors = true;
             }
         }
+    }])
 
-        }])
+.controller('MembersController', ['$scope','Members', function($scope, Members) {
+    console.log("list members...");
+        $('#example').DataTable();
+    $scope.viewMember = function(){
+        console.log("now submitting the report...")
+
+    }
+
+    $scope.submitForm = function() {
+
+        // check to make sure the form is completely valid
+        if ($scope.reportForm
+                .$valid) {
+            Reports.create(JSON.stringify($scope.report) )
+            $scope.success = true;
+            $scope.report = {};
+        }else{
+            $scope.errors = true;
+        }
+    }
+}])
 .controller('Reports1Controller', ['$scope','Reports', function($scope, Reports) {
     console.log("show create tithe form...");
     $scope.report = {};
@@ -49,16 +70,4 @@ angular.module('esavvy.controllers', [])
         $scope.success = true;
         $scope.report = {};
     }
-}])
-controller('TitheController', ['$scope','Reports', function($scope, Reports) {
-    console.log("show create tithe form...");
-    $scope.report = {};
-
-    $scope.processForm = function(){
-        console.log("now submitting the tithes...")
-        Reports.create(JSON.stringify($scope.report) )
-        $scope.success = true;
-        $scope.report = {};
-    }
-}])
-;
+}]);

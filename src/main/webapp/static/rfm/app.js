@@ -35,6 +35,12 @@ eSavvyApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/tithe',
             templateUrl: 'static/views/tithe/_new-tithe.html',
             controller : 'Reports1Controller'
+        })
+
+        .state('members', {
+            url: '/members',
+            templateUrl: 'static/views/members/_view-members.html',
+            controller : 'MembersController'
         });
 
 });
