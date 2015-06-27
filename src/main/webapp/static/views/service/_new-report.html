@@ -1,0 +1,95 @@
+
+<div class="panel panel-white">
+    <div class="panel-heading">
+        <h1 class="mainTitle">Capture Service Report</h1>
+    </div>
+    <div class="alert alert-block alert-success fade in" ng-show="success">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="alert-heading margin-bottom-10"><i class="ti-check"></i> Success!</h4>
+        <p class="margin-bottom-10">
+            Service report saved succesfully
+        </p>
+        <p>
+            <a href="#" class="btn btn-o btn-success">
+               Go to Dashboard
+            </a>
+        </p>
+    </div>
+    <div class="alert alert-block alert-danger fade in" ng-show="errors">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="alert-heading margin-bottom-10"><i class="ti-close"></i> Error!</h4>
+        <p class="margin-bottom-10">
+            Fields marked with asterisk cannot be left blank
+        </p>
+        <p>
+            <a href="#" class="btn btn-danger">
+               Cancel and go to Dashboard
+            </a>
+
+        </p>
+    </div>
+    <div class="panel-body">
+
+        <form name="reportForm" ng-submit="submitForm()" novalidate>
+
+            <!-- NAME -->
+            <div class="form-group" ng-class="{ 'has-error' : reportForm.type.$invalid && !reportForm.type.$pristine }">
+                <label>Service Type <span class="symbol required"></span></label>
+                <select class="cs-select cs-skin-elastic" ng-model="report.type" name="type" required>
+                    <option value="Sunday Service" selected>Sunday Service</option>
+                    <option value="Midweek Service">Midweek Service</option>
+                    <option value="Other">Other</option>
+                </select>
+                <p ng-show="reportForm.type.$invlaid && !reportForm.type.$pristine" class="help-block">Service type is required.</p>
+            </div>
+
+            <!-- Date -->
+
+            <div class="form-group ng-class = {'has-error' : reportForm.date.$error.required && reportForm.date.$dirty}">
+                <label>
+                    Date <span class="symbol required"></span>
+                </label>
+                <input class="form-control datepicker" ng-model="report.date" type="date" name="date" required="required">
+                <span ng-show="(reportForm.date.$error.required && reportForm.date.$dirty )" class="help-block">Please specify service date</span>
+                <span ng-show="(reportForm.date.$error.$invalid && reportForm.date.$dirty )" class="help-block">Invalid date</span>
+            </div>
+
+            <!-- Tithe -->
+            <div class="form-group" ng-class="{ 'has-error' : reportForm.tithe.$invalid && !reportForm.tithe.$pristine }">
+                <label>Tithe</label>
+                <input  type="text" placeholder="Enter the total tithes" ng-pattern="NumberRegex"  name="tithe" class="form-control" ng-model="report.tithe" >
+                <p ng-show="reportForm.tithe.$error.pattern && !reportForm.tithe.$pristine" class="help-block">Tithe cannot only be numbers.</p>
+            </div>
+
+            <!-- Offering -->
+            <div class="form-group" ng-class="{ 'has-error' : reportForm.offering.$invalid && !reportForm.offering.$pristine }">
+                <label>Offering</label>
+                <input  type="text" placeholder="Enter the total offering" ng-pattern="NumberRegex"  name="offering" class="form-control" ng-model="report.offering" >
+                <p ng-show="reportForm.offering.$error.pattern" class="help-block">Offering cannot only be numbers.</p>
+            </div>
+
+            <!-- Comments -->
+            <div class="form-group" ng-class="{ 'has-error' : reportForm.comment.$invalid && !reportForm.comment.$pristine }">
+                <label>Comment <span class="symbol required"></span></label>
+                <textarea placeholder="Put your comment here" name="comment" id="comment" class="form-control" ng-model="report.comment" required></textarea>
+                <p ng-show="reportForm.comment.$invalid && !reportForm.comment.$pristine" class="help-block">Comment cannot be blank.</p>
+            </div>
+
+            <button type="submit" class="btn btn-o btn-primary" >
+                Submit
+            </button>
+            <button type="reset" class="btn btn-o btn-wide btn-default">
+                Clear
+            </button>
+
+        </form>
+
+
+
+
+    </div>
+    </div>
