@@ -1,4 +1,10 @@
-var eSavvyApp = angular.module('eSavvyApp', ['ui.router','esavvy.services','esavvy.controllers']);
+var eSavvyApp = angular.module('eSavvyApp', ['ui.router','esavvy.services','esavvy.controllers','LocalStorageModule','ui.bootstrap','ngTable']);
+
+eSavvyApp.config(function (localStorageServiceProvider) {
+    localStorageServiceProvider
+        .setPrefix('ls')
+        .setNotify(true, true)
+})
 
 eSavvyApp.config(function($stateProvider, $urlRouterProvider) {
 

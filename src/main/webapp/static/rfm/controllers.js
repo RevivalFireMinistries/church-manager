@@ -39,26 +39,34 @@ angular.module('esavvy.controllers', [])
         }
     }])
 
-.controller('MembersController', ['$scope','Members', function($scope, Members) {
-    console.log("list members...");
+.controller('MembersController', ['$scope','Members','localStorageService','ngTableParams', function($scope, Members,localStorageService,ngTableParams) {
+        waitingDialog.show('Please Wait...');
         $('#example').DataTable();
-    $scope.viewMember = function(){
-        console.log("now submitting the report...")
+        var members = localStorageService.get('members');
 
-    }
-
-    $scope.submitForm = function() {
-
-        // check to make sure the form is completely valid
-        if ($scope.reportForm
-                .$valid) {
-            Reports.create(JSON.stringify($scope.report) )
-            $scope.success = true;
-            $scope.report = {};
+        if(typeof(members) !== "undefined" && members !== null){
+            console.log("...Load the local storage values...")
+            members = localStorageService.get('members');
+            waitingDialog.hide();
         }else{
-            $scope.errors = true;
+            console.log("...REst call required...")
+            Members.all(1).then(function(data){
+                members = data;
+                localStorageService.add('members',members);
+                waitingDialog.hide();
+            });
         }
-    }
+
+        $scope.tableParams = new ngTableParams({
+            page: 1, // show first page
+            count: 5 // count per page
+        }, {
+            total: members.length, // length of data
+            getData: function ($defer, params) {
+                $defer.resolve(members.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            }
+        });
+
 }])
 .controller('Reports1Controller', ['$scope','Reports', function($scope, Reports) {
     console.log("show create tithe form...");

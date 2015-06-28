@@ -36,17 +36,22 @@
 		<!-- end: MAIN CSS -->
 		<!-- start: CLIP-TWO CSS -->
 		<link rel="stylesheet" href="static/assets/css/styles.css">
+		<link rel="stylesheet" href="static/assets/css/ng-table.css">
 		<link rel="stylesheet" href="static/assets/css/plugins.css">
 		<link rel="stylesheet" href="static/assets/css/themes/theme-1.css" id="skin_color" />
 		<!-- end: CLIP-TWO CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
-
+		<script src="static/vendor/jquery/jquery.min.js"></script>
 		<script src="http://code.angularjs.org/1.2.13/angular.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
-		<script src="static/rfm/rest-services.js"></script>
-		<script src="static/rfm/controllers.js"></script>
+		<script src="static/assets/js/angular-local-storage.js"></script>
+		<script src="static/assets/js/ui-bootstrap-tpls-0.12.1.min.js"></script>
+		<script src="static/assets/js/waiting.js"></script>
+		<script src="static/assets/js/ng-table.js"></script>
 		<script src="static/rfm/app.js"></script>
+		<script src="static/rfm/controllers.js"></script>
+		<script src="static/rfm/rest-services.js"></script>
 
 	</head>
 	<!-- end: HEAD -->
@@ -1562,7 +1567,6 @@
 			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->
-		<script src="static/vendor/jquery/jquery.min.js"></script>
 		<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="static/vendor/modernizr/modernizr.js"></script>
 		<script src="static/vendor/jquery-cookie/jquery.cookie.js"></script>
