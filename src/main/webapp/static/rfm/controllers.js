@@ -32,7 +32,8 @@ angular.module('esavvy.controllers', [])
                     .$valid) {
                 Reports.create(JSON.stringify($scope.report) )
                 $scope.success = true;
-                $scope.report = {};
+                $scope.reportForm.$setPristine();
+                $scope.report={};
             }else{
                 $scope.errors = true;
             }
@@ -78,4 +79,5 @@ angular.module('esavvy.controllers', [])
         $scope.success = true;
         $scope.report = {};
     }
+
 }]);

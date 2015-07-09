@@ -24,7 +24,7 @@
 		<link rel="stylesheet" href="static/vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="static/vendor/fontawesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="static/vendor/themify-icons/themify-icons.min.css">
-		<link href="static/vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
+		<link href="static/vendor/animate-css/animate.min.css" rel="stylesheet" media="screen">
 		<link href="static/vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
 		<link href="static/vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
 		<link href="static/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" media="screen">
@@ -33,6 +33,22 @@
 		<link href="static/vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
 		<link href="static/vendor/select2/select2.min.css" rel="stylesheet" media="screen">
 		<link href="static/vendor/DataTables/css/DT_bootstrap.css" rel="stylesheet" media="screen">
+
+		<!-- Google fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="static/vendor/bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="static/vendor/fontawesome/css/font-awesome.min.css">
+		<!-- Themify Icons -->
+		<link rel="stylesheet" href="static/vendor/themify-icons/themify-icons.min.css">
+		<!-- Loading Bar -->
+		<link rel="stylesheet" href="static/vendor/loadingbar/loading-bar.min.css">
+		<!-- Animate Css -->
+		<link rel="stylesheet" href="static/vendor/animate-css/animate.css">
+		<!-- Clip-Two CSS -->
+		<link rel="stylesheet" href="static/assets/css/styles.css">
+		<link rel="stylesheet" href="static/assets/css/plugins.css">
 		<!-- end: MAIN CSS -->
 		<!-- start: CLIP-TWO CSS -->
 		<link rel="stylesheet" href="static/assets/css/styles.css">
@@ -41,22 +57,68 @@
 		<link rel="stylesheet" href="static/assets/css/themes/theme-1.css" id="skin_color" />
 		<!-- end: CLIP-TWO CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
-		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+
+		<!-- Jquery-->
 		<script src="static/vendor/jquery/jquery.min.js"></script>
-		<script src="http://code.angularjs.org/1.2.13/angular.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+
+
+		<script src="static/vendor/angular/angular.min.js"></script>
 		<script src="static/assets/js/angular-local-storage.js"></script>
 		<script src="static/assets/js/ui-bootstrap-tpls-0.12.1.min.js"></script>
 		<script src="static/assets/js/waiting.js"></script>
 		<script src="static/assets/js/ng-table.js"></script>
+
+		<script src="static/vendor/fastclick/fastclick.min.js"></script>
+		<!-- Angular -->
+		<script src="static/vendor/angular/angular-cookies.min.js"></script>
+		<script src="static/vendor/angular/angular-animate.min.js"></script>
+		<script src="static/vendor/angular/angular-ui-router.min.js"></script>
+		<script src="static/vendor/angular/angular-touch.min.js"></script>
+		<script src="static/vendor/angular/angular-sanitize.min.js"></script>
+		<!-- Angular storage -->
+		<script src="static/vendor/angularstorage/ngStorage.min.js"></script>
+		<!-- Angular Translate -->
+		<script src="static/vendor/angulartranslate/angular-translate.min.js"></script>
+		<script src="static/vendor/angulartranslate/angular-translate-loader-url.min.js"></script>
+		<script src="static/vendor/angulartranslate/angular-translate-loader-static-files.min.js"></script>
+		<script src="static/vendor/angulartranslate/angular-translate-storage-local.min.js"></script>
+		<script src="static/vendor/angulartranslate/angular-translate-storage-cookie.min.js"></script>
+		<!-- oclazyload -->
+		<script src="static/vendor/oclazyload/ocLazyLoad.min.js"></script>
+		<!-- breadcrumb -->
+		<script src="static/vendor/angular-breadcrumb/angular-breadcrumb.min.js"></script>
+		<!-- Loading Bar -->
+		<script src="static/vendor/loadingbar/loading-bar.min.js"></script>
+		<!-- Angular Scroll -->
+		<script src="static/vendor/angular-scroll/angular-scroll.min.js"></script>
+
+
+
+		<!-- RFM scripts -->
 		<script src="static/rfm/app.js"></script>
+		<script src="static/assets/js/mainCtrl.js"></script>
 		<script src="static/rfm/controllers.js"></script>
 		<script src="static/rfm/rest-services.js"></script>
 
+		<!-- Clip-Two Directives -->
+		<script src="static/assets/js/directives/toggle.js"></script>
+		<script src="static/assets/js/directives/empty-links.js"></script>
+		<script src="static/assets/js/directives/sidebars.js"></script>
+		<script src="static/assets/js/directives/off-click.js"></script>
+		<script src="static/assets/js/directives/full-height.js"></script>
+		<script src="static/assets/js/directives/panel-tools.js"></script>
+		<script src="static/assets/js/directives/char-limit.js"></script>
+		<script src="static/assets/js/directives/dismiss.js"></script>
+		<script src="static/assets/js/directives/compare-to.js"></script>
+		<script src="static/assets/js/directives/select.js"></script>
+		<script src="static/assets/js/directives/messages.js"></script>
+		<script src="static/assets/js/directives/chat.js"></script>
+
+
 	</head>
 	<!-- end: HEAD -->
-	<body ng-app="eSavvyApp">
-		<div id="app">
+	<body ng-app="app">
+		<div id="appMain">
 			<!-- sidebar -->
 			<div class="sidebar app-aside" id="sidebar">
 				<div class="sidebar-container perfect-scrollbar">
@@ -892,7 +954,7 @@
 							<!-- start: USER OPTIONS DROPDOWN -->
 							<li class="dropdown current-user">
 								<a href class="dropdown-toggle" data-toggle="dropdown">
-									<img src="static/assets/images/avatar-1.jpg" alt="Peter"> <span class="username">Peter <i class="ti-angle-down"></i></i></span>
+									<img src="static/assets/images/avatar-1.jpg" alt="Peter"> <span class="username">Peter <i class="ti-angle-down"></i></span>
 								</a>
 								<ul class="dropdown-menu dropdown-dark">
 									<li>
@@ -937,13 +999,15 @@
 					<!-- end: NAVBAR COLLAPSE -->
 				</header>
 				<!-- end: TOP NAVBAR -->
-				<div class="main-content" >
+				<div class="main-content" ng-controller="AppCtrl">
 					<div class="wrap-content container" id="container">
 
 
 
 						<!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
-						<div ui-view></div>
+						<div ui-view id="app" ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}">
+
+						</div>
 
 
 
@@ -1454,116 +1518,7 @@
 			</div>
 			<!-- end: OFF-SIDEBAR -->
 			<!-- start: SETTINGS -->
-			<div class="settings panel panel-default hidden-xs hidden-sm" id="settings">
-				<button ct-toggle="toggle" data-toggle-class="active" data-toggle-target="#settings" class="btn btn-default">
-					<i class="fa fa-spin fa-gear"></i>
-				</button>
-				<div class="panel-heading">
-					Style Selector
-				</div>
-				<div class="panel-body">
-					<!-- start: FIXED HEADER -->
-					<div class="setting-box clearfix">
-						<span class="setting-title pull-left"> Fixed header</span>
-						<span class="setting-switch pull-right">
-							<input type="checkbox" class="js-switch" id="fixed-header" />
-						</span>
-					</div>
-					<!-- end: FIXED HEADER -->
-					<!-- start: FIXED SIDEBAR -->
-					<div class="setting-box clearfix">
-						<span class="setting-title pull-left">Fixed sidebar</span>
-						<span class="setting-switch pull-right">
-							<input type="checkbox" class="js-switch" id="fixed-sidebar" />
-						</span>
-					</div>
-					<!-- end: FIXED SIDEBAR -->
-					<!-- start: CLOSED SIDEBAR -->
-					<div class="setting-box clearfix">
-						<span class="setting-title pull-left">Closed sidebar</span>
-						<span class="setting-switch pull-right">
-							<input type="checkbox" class="js-switch" id="closed-sidebar" />
-						</span>
-					</div>
-					<!-- end: CLOSED SIDEBAR -->
-					<!-- start: FIXED FOOTER -->
-					<div class="setting-box clearfix">
-						<span class="setting-title pull-left">Fixed footer</span>
-						<span class="setting-switch pull-right">
-							<input type="checkbox" class="js-switch" id="fixed-footer" />
-						</span>
-					</div>
-					<!-- end: FIXED FOOTER -->
-					<!-- start: THEME SWITCHER -->
-					<div class="colors-row setting-box">
-						<div class="color-theme theme-1">
-							<div class="color-layout">
-								<label>
-									<input type="radio" name="setting-theme" value="theme-1">
-									<span class="ti-check"></span>
-									<span class="split header"> <span class="color th-header"></span> <span class="color th-collapse"></span> </span>
-									<span class="split"> <span class="color th-sidebar"><i class="element"></i></span> <span class="color th-body"></span> </span>
-								</label>
-							</div>
-						</div>
-						<div class="color-theme theme-2">
-							<div class="color-layout">
-								<label>
-									<input type="radio" name="setting-theme" value="theme-2">
-									<span class="ti-check"></span>
-									<span class="split header"> <span class="color th-header"></span> <span class="color th-collapse"></span> </span>
-									<span class="split"> <span class="color th-sidebar"><i class="element"></i></span> <span class="color th-body"></span> </span>
-								</label>
-							</div>
-						</div>
-					</div>
-					<div class="colors-row setting-box">
-						<div class="color-theme theme-3">
-							<div class="color-layout">
-								<label>
-									<input type="radio" name="setting-theme" value="theme-3">
-									<span class="ti-check"></span>
-									<span class="split header"> <span class="color th-header"></span> <span class="color th-collapse"></span> </span>
-									<span class="split"> <span class="color th-sidebar"><i class="element"></i></span> <span class="color th-body"></span> </span>
-								</label>
-							</div>
-						</div>
-						<div class="color-theme theme-4">
-							<div class="color-layout">
-								<label>
-									<input type="radio" name="setting-theme" value="theme-4">
-									<span class="ti-check"></span>
-									<span class="split header"> <span class="color th-header"></span> <span class="color th-collapse"></span> </span>
-									<span class="split"> <span class="color th-sidebar"><i class="element"></i></span> <span class="color th-body"></span> </span>
-								</label>
-							</div>
-						</div>
-					</div>
-					<div class="colors-row setting-box">
-						<div class="color-theme theme-5">
-							<div class="color-layout">
-								<label>
-									<input type="radio" name="setting-theme" value="theme-5">
-									<span class="ti-check"></span>
-									<span class="split header"> <span class="color th-header"></span> <span class="color th-collapse"></span> </span>
-									<span class="split"> <span class="color th-sidebar"><i class="element"></i></span> <span class="color th-body"></span> </span>
-								</label>
-							</div>
-						</div>
-						<div class="color-theme theme-6">
-							<div class="color-layout">
-								<label>
-									<input type="radio" name="setting-theme" value="theme-6">
-									<span class="ti-check"></span>
-									<span class="split header"> <span class="color th-header"></span> <span class="color th-collapse"></span> </span>
-									<span class="split"> <span class="color th-sidebar"><i class="element"></i></span> <span class="color th-body"></span> </span>
-								</label>
-							</div>
-						</div>
-					</div>
-					<!-- end: THEME SWITCHER -->
-				</div>
-			</div>
+
 			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->

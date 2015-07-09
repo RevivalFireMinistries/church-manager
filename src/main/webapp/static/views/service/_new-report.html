@@ -9,7 +9,7 @@
         </button>
         <h4 class="alert-heading margin-bottom-10"><i class="ti-check"></i> Success!</h4>
         <p class="margin-bottom-10">
-            Service report saved succesfully
+            Service report saved successfully
         </p>
         <p>
             <a href="#" class="btn btn-o btn-success">
@@ -37,25 +37,25 @@
         <form name="reportForm" ng-submit="submitForm()" novalidate>
 
             <!-- NAME -->
-            <div class="form-group" ng-class="{ 'has-error' : reportForm.type.$invalid && !reportForm.type.$pristine }">
+            <div class="form-group" ng-class="{ 'has-error' : reportForm.type.$invalid }">
                 <label>Service Type <span class="symbol required"></span></label>
                 <select class="cs-select cs-skin-elastic" ng-model="report.type" name="type" required>
-                    <option value="Sunday Service" selected>Sunday Service</option>
+                    <option value="Sunday Service" >Please Select</option>
+                    <option value="Sunday Service" >Sunday Service</option>
                     <option value="Midweek Service">Midweek Service</option>
                     <option value="Other">Other</option>
                 </select>
-                <p ng-show="reportForm.type.$invlaid && !reportForm.type.$pristine" class="help-block">Service type is required.</p>
+                <p ng-show="reportForm.type.$invalid" class="help-block">Service type is required.</p>
             </div>
 
             <!-- Date -->
 
-            <div class="form-group ng-class = {'has-error' : reportForm.date.$error.required && reportForm.date.$dirty}">
+            <div class="form-group" ng-class = "{'has-error' : reportForm.date.$error.required}">
                 <label>
                     Date <span class="symbol required"></span>
                 </label>
-                <input class="form-control datepicker" ng-model="report.date" type="date" name="date" required="required">
-                <span ng-show="(reportForm.date.$error.required && reportForm.date.$dirty )" class="help-block">Please specify service date</span>
-                <span ng-show="(reportForm.date.$error.$invalid && reportForm.date.$dirty )" class="help-block">Invalid date</span>
+                <input  class="form-control datepicker" ng-model="report.date" type="date" name="date" required>
+                <p ng-show="reportForm.date.$error.required" class="help-block">Please specify service date</p>
             </div>
 
             <!-- Tithe -->
@@ -79,7 +79,7 @@
                 <p ng-show="reportForm.comment.$invalid && !reportForm.comment.$pristine" class="help-block">Comment cannot be blank.</p>
             </div>
 
-            <button type="submit" class="btn btn-o btn-primary" >
+            <button type="submit" class="btn btn-o btn-primary"  ng-disabled="reportForm.$invalid">
                 Submit
             </button>
             <button type="reset" class="btn btn-o btn-wide btn-default">
