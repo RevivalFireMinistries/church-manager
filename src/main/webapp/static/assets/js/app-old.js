@@ -117,7 +117,7 @@ app.config(['$translateProvider',
         // prefix and suffix information  is required to specify a pattern
         // You can simply use the static-files loader with this pattern:
         $translateProvider.useStaticFilesLoader({
-            prefix: 'assets/i18n/',
+            prefix: 'static/assets/i18n/',
             suffix: '.json'
         });
 

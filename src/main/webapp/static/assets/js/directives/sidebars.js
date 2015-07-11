@@ -96,7 +96,7 @@ function ($document, $rootScope) {
         return $('.app-sidebar-fixed').length;
     }
 
-}).directive('appAside', ['$window', '$rootScope', '$timeout',
+}).directive('appAside', ['$window', '$rootScope', '$timeout', 'APP_MEDIAQUERY',
 function ($window, $rootScope, $timeout, mq) {
     var $html = $('html'), $win = $($window), _this, wrap = $('.app-aside');
     return {

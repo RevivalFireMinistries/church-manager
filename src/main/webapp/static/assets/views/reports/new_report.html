@@ -1,0 +1,89 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title">
+    <div class="row">
+        <div class="col-sm-8">
+            <h1 class="mainTitle" translate="sidebar.nav.reports.NEW">{{ title }}</h1>
+            <span class="mainDescription">Ensure that the correct information is captured</span>
+        </div>
+        <div ncy-breadcrumb></div>
+    </div>
+</section>
+<form name="Form" id="form1" novalidate ng-submit="processForm(Form)">
+    <div class="row">
+        <div class="col-md-6">
+            <fieldset>
+                <legend>
+                    Fill in the details below
+                </legend>
+                <div class="form-group" ng-class="{'has-error':Form.service.$dirty && Form.service.$invalid, 'has-success':Form.service.$valid}">
+                    <label for="serviceType">
+                        Select Service Type
+                    </label>
+                    <select class="cs-select cs-skin-elastic" id="serviceType" ng-model="report.type" required>
+                        <option value="" disabled selected>Select a Type</option>
+                        <option value="Sunday">Sunday Service</option>
+                        <option value="Midweek">Midweek Service</option>
+                        <option value="Other">Other Service</option>
+                    </select>
+                    <span class="error text-small block" ng-if="Form.service.$dirty && Form.service.$invalid">Please specify service type</span>
+                </div>
+                <div class="form-group" ng-class="{'has-error':Form.date.$dirty && Form.date.$invalid, 'has-success':Form.date.$valid}">
+                    <label class="control-label">
+                        Service Date <span class="symbol required"></span>
+                    </label>
+                   <input  class="form-control datepicker" ng-model="report.date" type="date" name="date" required>
+
+                    <span class="error text-small block" ng-if="Form.date.$dirty && Form.date.$invalid">date cannot be blank</span>
+
+                </div>
+                <div class="form-group" ng-class="{'has-error':Form.tithe.$dirty && Form.tithe.$invalid, 'has-success':Form.tithe.$valid}">
+                    <label class="control-label">
+                        Total Tithes <span class="symbol required"></span>
+                    </label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            R
+                        </div>
+                        <input type="number" placeholder="Enter the total tithe amount" class="form-control" name="tithe" ng-model="report.tithe" required />
+                    </div>
+
+                    <span class="error text-small block" ng-if="Form.tithe.$dirty && Form.tithe.$invalid">Tithe can only be numbers</span>
+
+                </div>
+                <div class="form-group" ng-class="{'has-error':Form.offering.$dirty && Form.offering.$invalid, 'has-success':Form.offering.$valid}">
+                    <label class="control-label">
+                        Total Offerings <span class="symbol required"></span>
+                    </label>
+                    <div class="input-group">
+                    <div class="input-group-addon">
+                        R
+                    </div>
+                    <input type="number" placeholder="Enter the total offering amount" class="form-control" name="offering" ng-model="report.offering" required />
+                    <span class="error text-small block" ng-if="Form.offering.$dirty && Form.offering.$invalid">Offering can only be numbers</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':Form.comment.$dirty && Form.comment.$invalid, 'has-success':Form.comment.$valid}">
+                    <label class="control-label">
+                        Comment <span class="symbol required"></span>
+                    </label>
+
+                        <textarea placeholder="Please enter a brief comment about the service" id="form-field-22" class="form-control" ng-model="report.comment" name="comment" required></textarea>
+                        <span class="error text-small block" ng-if="Form.comment.$dirty && Form.comment.$invalid">Comment cannot be blank</span>
+                      </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-primary btn-o" ng-click="form.reset(Form)">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <pre class="margin-top-20">{{ report | json }}</pre>
+                </fieldset>
+            </div>
+        </div>
+    </form>

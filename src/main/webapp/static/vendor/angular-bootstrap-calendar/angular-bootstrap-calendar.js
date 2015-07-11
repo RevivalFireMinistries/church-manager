@@ -372,7 +372,7 @@ angular.module('mwl.calendar')
 angular.module('mwl.calendar')
   .directive('mwlCalendarYear', ["$sce", "$timeout", "calendarHelper", "moment", function($sce, $timeout, calendarHelper, moment) {
     return {
-      templateUrl: 'assets/views/calendar/year.html',
+      templateUrl: 'static/assets/views/calendar/year.html',
       restrict: 'EA',
       require: '^mwlCalendar',
       scope: {

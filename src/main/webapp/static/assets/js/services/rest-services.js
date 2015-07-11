@@ -1,7 +1,7 @@
 angular.module('esavvy.services', [])
 
-    .constant('REST_SERVER', 'http://esavvy.rfm.org.za')
-    //.constant('REST_SERVER', 'http://localhost:9000')
+    //.constant('REST_SERVER', 'http://esavvy.rfm.org.za')
+    .constant('REST_SERVER', 'http://localhost:9000')
 
 
     .factory('Members',['$http','REST_SERVER', function($http,REST_SERVER) {
@@ -44,7 +44,7 @@ angular.module('esavvy.services', [])
                     });
             },
             create:function(data){
-                $http.post(REST_SERVER+'/report/create/',data);
+                $http.post(REST_SERVER+'/ws/member/event/add/',data);
                 console.log("Report sent successfully")
             },
             edit:function(id,data){
