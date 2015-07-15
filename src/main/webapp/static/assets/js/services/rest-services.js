@@ -61,20 +61,20 @@ angular.module('esavvy.services', [])
             }
         }
     }])
-    .factory('Auth', ['$http','REST_SERVER',function($http,REST_SERVER,localStorageService){
+    .factory('Auth', ['$http','REST_SERVER','$state',function($http,REST_SERVER,localStorageService,$state){
         var user;
 
         return{
-            login : function(aUser){
-                console.log("---login the user-----")
-                return $http.post(REST_SERVER+'/ws/user/login',aUser).
-                    then(function(result) {
-                        localStorageService.add('user',JSON.stringify(result.data));
-                        return result.data;
+            getUser : function(username,password,callback){
+                return $http.get(REST_SERVER+'/ws/user/user/'+username).
+                    then(function (user) {
+                        if (user !== null && user.password === password) {
+                            response = { success: true };
+                        } else {
+                            response = { success: false, message: 'Username or password is incorrect' };
+                        }
+                        callback(response);
                     });
-            },
-            isLoggedIn : function(){
-                return(user)? user : false;
             }
         }
     }])

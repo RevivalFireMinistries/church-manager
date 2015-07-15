@@ -1,6 +1,6 @@
 var app = angular.module('clipApp', ['clip-two','ngStorage']);
 app.run(['$rootScope', '$state', '$stateParams','$localStorage',
-function ($rootScope, $state, $stateParams,$localStorage) {
+function ($rootScope, $state, $stateParams,$localStorage,$location) {
 
     // Attach Fastclick for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
     FastClick.attach(document.body);
@@ -52,7 +52,9 @@ function ($rootScope, $state, $stateParams,$localStorage) {
                     return;
                 }else{
                     console.log("no user found in storage....login please")
+                    event.preventDefault();
                     $state.go("login.signin");
+
                 }
             }
 
