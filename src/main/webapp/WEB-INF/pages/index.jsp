@@ -65,6 +65,7 @@
 <script src="static/assets/js/services/rest-services.js"></script>
 <!-- Clip-Two Scripts -->
 <script src="static/assets/js/app.js"></script>
+<script src="static/assets/js/utils.js"></script>
 <script src="static/assets/js/main.js"></script>
 <script src="static/assets/js/config.constant.js"></script>
 <script src="static/assets/js/config.router.js"></script>

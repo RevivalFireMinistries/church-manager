@@ -41,28 +41,31 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'Dashboard'
         }
-    }).state('app.ui', {
-        url: '/ui',
+    }).state('app.members', {
+        url: '/members',
         template: '<div ui-view class="fade-in-up"></div>',
-        title: 'UI Elements',
+        title: 'Members',
         ncyBreadcrumb: {
-            label: 'UI Elements'
-        }
-    }).state('app.ui.elements', {
-        url: '/elements',
-        templateUrl: "static/assets/views/ui_elements.html",
-        title: 'Elements',
+            label: 'Members'
+        },
+        resolve: loadSequence('ngTable','membersCtrl')
+    }).state('app.members.new', {
+        url: '/new',
+        templateUrl: "static/assets/views/members/new_member.html",
+        title: 'New Member',
         icon: 'ti-layout-media-left-alt',
+        controller: 'MembersCtrl',
         ncyBreadcrumb: {
-            label: 'Elements'
+            label: 'New Member'
         }
-    }).state('app.ui.buttons', {
-        url: '/buttons',
-        templateUrl: "static/assets/views/ui_buttons.html",
-        title: 'Buttons',
+    }).state('app.members.view', {
+        url: '/view',
+        templateUrl: "static/assets/views/members/view_members.html",
+        title: 'View Members',
         resolve: loadSequence('spin', 'ladda', 'angular-ladda', 'laddaCtrl'),
+        controller : 'MembersCtrl',
         ncyBreadcrumb: {
-            label: 'Buttons'
+            label: 'View Members'
         }
     }).state('app.ui.links', {
         url: '/links',
@@ -190,13 +193,15 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         url: '/export',
         templateUrl: "static/assets/views/table_export.html",
         title: 'Table'
-    }).state('app.form', {
-        url: '/form',
+    }).state('app.tithes', {
+        url: '/tithes',
         template: '<div ui-view class="fade-in-up"></div>',
-        title: 'Forms',
+        title: 'Tithes',
+        controller: 'TitheCtrl',
         ncyBreadcrumb: {
-            label: 'Forms'
-        }
+            label: 'Tithes'
+        },
+        resolve: loadSequence('ngTable','titheCtrl')
     }).state('app.tithes.new', {
         url: '/new',
         templateUrl: "static/assets/views/tithes/new_tithes.html",
@@ -354,10 +359,10 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         template: '<div ui-view class="fade-in-up"></div>'
     }).state('error.404', {
         url: '/404',
-        templateUrl: "static/assets/views/utility_404.html",
+        templateUrl: "static/assets/views/utility_404.html"
     }).state('error.500', {
         url: '/500',
-        templateUrl: "static/assets/views/utility_500.html",
+        templateUrl: "static/assets/views/utility_500.html"
     })
 
 	// Login routes
@@ -365,10 +370,13 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
 	.state('login', {
 	    url: '/login',
 	    template: '<div ui-view class="fade-in-right-big smooth"></div>',
+        resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'perfect_scrollbar', 'toaster', 'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl'),
 	    abstract: true
 	}).state('login.signin', {
 	    url: '/signin',
-	    templateUrl: "static/assets/views/login_login.html"
+        controller : 'LoginCtrl',
+	    templateUrl: "static/assets/views/login_login.html",
+        resolve: loadSequence('sweet-alert','loginCtrl')
 	}).state('login.forgot', {
 	    url: '/forgot',
 	    templateUrl: "static/assets/views/login_forgot.html"

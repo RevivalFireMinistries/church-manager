@@ -56,10 +56,10 @@
       "dashboard": {
       	"MAIN": "Dashboard"
       },
-      "element": {
-      	"MAIN": "UI Elements",
-        "ELEMENTS": "Elements",
-        "BUTTONS": "Buttons",
+      "members": {
+      	"MAIN": "Members",
+        "NEW": "Enter Member",
+        "VIEW": "View Members",
         "LINKS": "Link Effects",
         "FONTAWESOME" : "Font Awesome Icons",
         "LINEARICONS" : "Linear Icons",

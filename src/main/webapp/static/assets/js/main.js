@@ -1,6 +1,6 @@
-var app = angular.module('clipApp', ['clip-two']);
-app.run(['$rootScope', '$state', '$stateParams',
-function ($rootScope, $state, $stateParams) {
+var app = angular.module('clipApp', ['clip-two','ngStorage']);
+app.run(['$rootScope', '$state', '$stateParams','$localStorage',
+function ($rootScope, $state, $stateParams,$localStorage) {
 
     // Attach Fastclick for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
     FastClick.attach(document.body);
@@ -13,7 +13,7 @@ function ($rootScope, $state, $stateParams) {
     // set below basic information
     $rootScope.app = {
         name: 'eSavvy', // name of your project
-        author: 'technology@rfm', // author's name or company name
+        author: 'rfmDigitalMedia', // author's name or company name
         description: 'Intelligent Church Management', // brief description
         version: '2.0', // current version
         year: ((new Date()).getFullYear()), // automatic current year (for copyright information)
@@ -38,6 +38,25 @@ function ($rootScope, $state, $stateParams) {
         job: 'ng-Dev',
         picture: 'app/img/user/02.jpg'
     };
+
+    $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams){
+
+            if(fromState.name.includes("login") || toState.name.includes("login")){
+                console.log("PASS............");
+                return;
+            }
+            else{
+                if(angular.isDefined($localStorage.user)){//already logged in - pass
+                    console.log("proceed user is there : "+user.username);
+                    return;
+                }else{
+                    console.log("no user found in storage....login please")
+                    $state.go("login.signin");
+                }
+            }
+
+        })
 
 
 }]);

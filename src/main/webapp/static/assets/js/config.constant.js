@@ -52,6 +52,9 @@ app.constant('JS_REQUIRES', {
         'xeditableCtrl': 'static/assets/js/controllers/xeditableCtrl.js',
         'chatCtrl': 'static/assets/js/controllers/chatCtrl.js',
         'reportsCtrl': 'static/assets/js/controllers/reportsCtrl.js',
+        'membersCtrl': 'static/assets/js/controllers/membersCtrl.js',
+        'titheCtrl': 'static/assets/js/controllers/titheCtrl.js',
+        'loginCtrl': 'static/assets/js/controllers/loginCtrl.js',
 
         //*** Filters
         'htmlToPlaintext': 'static/assets/js/filters/htmlToPlaintext.js'
