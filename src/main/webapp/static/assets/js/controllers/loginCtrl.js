@@ -31,11 +31,12 @@ app.controller('LoginCtrl', function ($scope, $state,SweetAlert,Members,$filter,
         }
     }
 
-    $scope.doLogin = function(form) {
+    $scope.doLogin = function() {
         $scope.dataLoading = true;
-        Auth.getUser(form.username, form.password, function (response) {
+        Auth.getUser($scope.user, function (response,user) {
             if (response.success) {
                 $state.go("app.dashboard");
+                $localStorage.user = user;
             } else {
                 SweetAlert.swal("Log in failed!", "Wrong username and password", "error");
                 $scope.dataLoading = false;
@@ -43,4 +44,11 @@ app.controller('LoginCtrl', function ($scope, $state,SweetAlert,Members,$filter,
         });
     };
 
+});
+
+app.controller('LogoutCtrl', function ($scope, $state,SweetAlert,Members,$filter,$localStorage,Auth) {
+
+   $state.go("login.signin");
+    delete $localStorage.user;
+    delete $localStorage.members;
 });

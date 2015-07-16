@@ -9,6 +9,13 @@ function ($rootScope, $state, $stateParams,$localStorage,$location) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
+    if(angular.isDefined($localStorage.user)){
+        var firstName = $localStorage.user.username;
+        var job = $localStorage.user.roleToString;
+        var assembly = $localStorage.user.assemblyName;
+    }
+
+
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
@@ -34,8 +41,9 @@ function ($rootScope, $state, $stateParams,$localStorage,$location) {
         }
     };
     $rootScope.user = {
-        name: 'Russel',
-        job: 'ng-Dev',
+        name: firstName,
+        job: job,
+        assembly: assembly,
         picture: 'app/img/user/02.jpg'
     };
 
@@ -48,7 +56,7 @@ function ($rootScope, $state, $stateParams,$localStorage,$location) {
             }
             else{
                 if(angular.isDefined($localStorage.user)){//already logged in - pass
-                    console.log("proceed user is there : "+user.username);
+                    console.log("proceed user is there : "+$localStorage.user.username);
                     return;
                 }else{
                     console.log("no user found in storage....login please")

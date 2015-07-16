@@ -18,7 +18,7 @@ app.controller('MembersCtrl', function ($scope, $state,SweetAlert,Members,$filte
     } else {
          //load from REST
          console.log("No members in local...load from rest")
-         Members.all(1).then(function(data){
+         Members.all($localStorage.user.assemblyId).then(function(data){
              $localStorage.members = data
          });
 

@@ -370,14 +370,18 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
 	.state('login', {
 	    url: '/login',
 	    template: '<div ui-view class="fade-in-right-big smooth"></div>',
-        resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'perfect_scrollbar', 'toaster', 'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl'),
+        resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'perfect_scrollbar', 'toaster', 'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl','loginCtrl'),
 	    abstract: true
 	}).state('login.signin', {
 	    url: '/signin',
         controller : 'LoginCtrl',
-	    templateUrl: "static/assets/views/login_login.html",
-        resolve: loadSequence('sweet-alert','loginCtrl')
-	}).state('login.forgot', {
+	    templateUrl: "static/assets/views/login_login.html"
+	}).state('login.signout', {
+        url: '/signout',
+        controller : 'LogoutCtrl',
+        templateUrl: "static/assets/views/login_forgot.html"
+    })
+     .state('login.forgot', {
 	    url: '/forgot',
 	    templateUrl: "static/assets/views/login_forgot.html"
 	}).state('login.registration', {

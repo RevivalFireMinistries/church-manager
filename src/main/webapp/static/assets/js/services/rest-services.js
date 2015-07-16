@@ -61,19 +61,22 @@ angular.module('esavvy.services', [])
             }
         }
     }])
-    .factory('Auth', ['$http','REST_SERVER','$state',function($http,REST_SERVER,localStorageService,$state){
+    .factory('Auth', ['$http','REST_SERVER','$state',function($http,REST_SERVER){
         var user;
 
         return{
-            getUser : function(username,password,callback){
-                return $http.get(REST_SERVER+'/ws/user/user/'+username).
-                    then(function (user) {
-                        if (user !== null && user.password === password) {
+            getUser : function(formUser,callback){
+                var url = REST_SERVER+'/ws/user/user/'+formUser.username;
+                console.log(url);
+                return $http.get(url).
+                    then(function (data) {
+                        var dbUser = data.data;
+                        if (dbUser !== null && dbUser.password === formUser.password) {
                             response = { success: true };
                         } else {
                             response = { success: false, message: 'Username or password is incorrect' };
                         }
-                        callback(response);
+                        callback(response,dbUser);
                     });
             }
         }
