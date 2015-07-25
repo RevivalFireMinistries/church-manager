@@ -1,86 +1,92 @@
-<!-- start: PAGE TITLE -->
-<section id="page-title">
-    <div class="row">
-        <div class="col-sm-8">
-            <h1 class="mainTitle" translate="sidebar.nav.tithes.NEW">{{ mainTitle }}</h1>
-            <span class="mainDescription">Use this page to start from scratch and put your custom content</span>
-        </div>
-        <div ncy-breadcrumb></div>
-    </div>
-</section>
-
-<form ng-controller="TitheCtrl" name="Form" id="form1" novalidate ng-submit="processForm(Form)">
-    <div class="col-sm-6">
-        <div class="panel panel-transparent">
+<div class="row margin-top-30">
+    <div class="col-lg-6 col-md-12">
+        <div class="panel panel-white">
+            <div class="panel-heading">
+                <h5 class="panel-title">New Tithe Entry</h5>
+            </div>
             <div class="panel-body">
-                <div class="form-group" ng-class="{'has-error':Form.member.$dirty && Form.member.$invalid, 'has-success':Form.member.$valid}">
-                    <label>
-                        Select Member
-                    </label>
-                    <ui-select ng-model="tithe.member" theme="bootstrap" name="member">
-                        <ui-select-match placeholder="Select in the list...">
-                            {{$select.selected.firstName}} {{$select.selected.lastName}}  {{$select.selected.phone}}
-                        </ui-select-match>
-                        <ui-select-choices repeat="member in members | filter: $select.search">
-                            <div ng-bind-html="member.firstName | highlight: $select.search"></div>
-                            <small ng-bind-html="member.phone | highlight: $select.search"></small>
-                        </ui-select-choices>
-                    </ui-select>
+                <div class="alert alert-danger" ng-show="error != null">
+                    <button data-ct-dismiss="alert" class="close">
+                        &times;
+                    </button>
+                    {{error}}
                 </div>
-                <div class="form-group" ng-class="{'has-error':Form.date.$dirty && Form.date.$invalid, 'has-success':Form.date.$valid}">
-                    <label class="control-label">
-                        Date <span class="symbol required"></span>
-                    </label>
-                    <input  class="form-control datepicker" ng-model="tithe.date" type="date" name="date" required>
-
-                    <span class="error text-small block" ng-if="Form.date.$dirty && Form.date.$invalid">Date cannot be blank</span>
-
+                <div class="alert alert-info" ng-show="success != null">
+                    <button data-ct-dismiss="alert" class="close">
+                        &times;
+                    </button>
+                    {{success}}
                 </div>
-                <div class="form-group" ng-class="{'has-error':Form.amount.$dirty && Form.amount.$invalid, 'has-success':Form.amount.$valid}">
-                    <label class="control-label">
-                        Amount <span class="symbol required"></span>
-                    </label>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            R
-                        </div>
-                        <input type="number" placeholder="Enter the tithe amount" class="form-control" name="amount" ng-model="tithe.amount" required />
+
+                    <div class="form-group">
+                        <label>
+                            Member
+                        </label>
+                        <ui-select ng-model="tithe.selected" theme="bootstrap" name="member">
+                            <ui-select-match placeholder="Type a member's name/surname...">
+                                {{$select.selected.firstName }} {{$select.selected.lastName }} {{$select.selected.phone }}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in members | filter: $select.search">
+                                <div ng-bind-html="item.firstName +' '+item.lastName | highlight: $select.search"></div>
+                                <small ng-bind-html="item.phone | highlight: $select.search"></small>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
-
-                    <span class="error text-small block" ng-if="Form.amount.$dirty && Form.amount.$invalid">Tithe can only be numbers</span>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="pull-right">
-                                <button type="submit" class="btn btn-primary">
-                                    Submit
-                                </button>
-                                <button type="reset" class="btn btn-primary btn-o" ng-click="form.reset(Form)">
-                                    Reset
-                                </button>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Tithe Date <span class="symbol required"></span>
+                        </label>
+                        <input  class="form-control datepicker" ng-model="tithe.date" type="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Amount <span class="symbol required"></span>
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                R
                             </div>
+                            <input type="number" placeholder="Enter the tithe amount" class="form-control" name="amount" ng-model="tithe.amount" required />
                         </div>
+
+                        <span class="error text-small block" ng-if="Form.tithe.$dirty && Form.tithe.$invalid">Tithe can only be numbers</span>
+
                     </div>
-                    <pre class="margin-top-20">{{ tithe | json }}</pre>
-                </div>
-                </div>
+                    <button type="button" class="btn btn-o btn-primary" ng-click="addTithe()">
+                        Add Tithe to List
+                    </button>
             </div>
         </div>
-    </form>
+    </div>
+    </div>
 
-<div class="container-fluid container-fullw">
+<div class="container-fluid container-fullw bg-white" ng-show="tithes.length">
     <div class="row">
         <div class="col-md-12">
-            <!-- /// controller:  'ngTableCtrl3' -  localtion: assets/js/controllers/ngTableCtrl.js /// -->
-            <div>
-                <table ng-table="tableParams" show-filter="true" class="table table-striped">
-                    <tr ng-repeat="tithe in $data">
-                        <td data-title="'#'"> {{$index + 1}} </td>
-                        <td data-title="'Name'">{{tithe.member.firstName}} {{member.firstName}}</td>
-                        <td data-title="'Phone'">{{tithe.phone}}</td>
-                        <td data-title="'Amount'">{{tithe.amount}}</td>
-                    </tr>
+            <h5 class="over-title margin-bottom-15">Tithe  <span class="text-bold">List</span></h5>
+            <table class="table table-hover" id="sample-table-1">
+                <thead>
+                <tr>
+                   <td colspan="4">     <button type="button" class="btn  btn-primary" ng-click="saveTithes()">
+                      Submit ALL Tithes
+                   </button></td>
+                </tr>
+                <tr>
+                    <th class="center">#</th>
+                    <th>Name</th>
+                    <th class="hidden-xs">Date</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="t in tithes">
+                    <td class="center">{{$index + 1}}</td>
+                    <td>{{t.member.firstName}} {{t.member.lastName}}</td>
+                    <td  class="hidden-xs">{{t.date | date:'dd/MM/yyyy'}}</td>
+                    <td>{{t.amount | currency : 'R'}} </td>
+                </tr>
+                </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>

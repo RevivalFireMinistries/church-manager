@@ -35,6 +35,7 @@
 <script src="static/vendor/jquery/jquery.min.js"></script>
 <!-- Fastclick -->
 <script src="static/vendor/fastclick/fastclick.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- Angular -->
 <script src="static/vendor/angular/angular.min.js"></script>
 <script src="static/vendor/angular/angular-cookies.min.js"></script>
@@ -85,9 +86,10 @@
 <!-- Clip-Two Controllers -->
 <script src="static/assets/js/controllers/mainCtrl.js"></script>
 <script src="static/assets/js/controllers/bootstrapCtrl.js"></script>
+<script src="static/assets/js/waiting.js"></script>
 
 
 <!-- Google Apis -->
-<script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather,visualization"></script>
+<%--<script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather,visualization"></script>--%>
 </body>
 </html>

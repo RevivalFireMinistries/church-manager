@@ -16,7 +16,7 @@
 					<div class="values">
 						<strong class="text-dark">18304</strong>
 						<p class="text-small no-margin">
-							Sales
+							 Attendance
 						</p>
 					</div>
 				</li>
@@ -27,7 +27,7 @@
 					<div class="values">
 						<strong class="text-dark">&#36;3,833</strong>
 						<p class="text-small no-margin">
-							Earnings
+							 Tithes
 						</p>
 					</div>
 				</li>
@@ -38,7 +38,7 @@
 					<div class="values">
 						<strong class="text-dark">&#36;848</strong>
 						<p class="text-small no-margin">
-							Referrals
+							Offering
 						</p>
 					</div>
 				</li>
@@ -55,13 +55,13 @@
 			<div class="panel panel-white no-radius text-center">
 				<div class="panel-body">
 					<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-					<h2 class="StepTitle">Manage Users</h2>
+					<h2 class="StepTitle">Members</h2>
 					<p class="text-small">
-						To add users, you need to be signed in as the super user.
+						View, edit and add members to the database.
 					</p>
 					<p class="links cl-effect-1">
-						<a href>
-							view more
+						<a ui-sref="app.members.view">
+							open
 						</a>
 					</p>
 				</div>
@@ -71,13 +71,13 @@
 			<div class="panel panel-white no-radius text-center">
 				<div class="panel-body">
 					<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
-					<h2 class="StepTitle">Manage Orders</h2>
+					<h2 class="StepTitle"> Reports</h2>
 					<p class="text-small">
-						The Manage Orders tool provides a view of all your orders.
+						Add service reports.
 					</p>
 					<p class="cl-effect-1">
-						<a href>
-							view more
+						<a ui-sref="app.reports.new">
+							open
 						</a>
 					</p>
 				</div>
@@ -87,13 +87,13 @@
 			<div class="panel panel-white no-radius text-center">
 				<div class="panel-body">
 					<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-					<h2 class="StepTitle">Manage Database</h2>
+					<h2 class="StepTitle">Enter Tithes</h2>
 					<p class="text-small">
-						Store, modify, and extract information from your database.
+						Capture tithe transactions into the system.
 					</p>
 					<p class="links cl-effect-1">
-						<a href>
-							view more
+						<a ui-sref="app.tithe.new">
+							open
 						</a>
 					</p>
 				</div>
@@ -103,7 +103,7 @@
 </div>
 <!-- end: FEATURED BOX LINKS -->
 <!-- start: FIRST SECTION -->
-<div class="container-fluid container-fullw padding-bottom-10">
+<!--<div class="container-fluid container-fullw padding-bottom-10">
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="row">
@@ -150,7 +150,7 @@
 						</div>
 						<div collapse="visits" ng-init="visits=false" class="panel-wrapper">
 							<div class="panel-body">
-								<!-- /// controller:  'VisitsCtrl' -  localtion: assets/js/controllers/dashboardCtrl.js /// -->
+								&lt;!&ndash; /// controller:  'VisitsCtrl' -  localtion: assets/js/controllers/dashboardCtrl.js /// &ndash;&gt;
 								<div ng-controller="VisitsCtrl" class="height-350">
 									<canvas class="tc-chart" tc-chartjs-line chart-options="options" chart-data="data" chart-legend="chart1" width="100%"></canvas>
 									<div class="margin-top-20">
@@ -206,7 +206,7 @@
 								</div>
 							</div>
 							<div class="margin-top-10">
-								<!-- /// controller:  'SalesCtrl' -  localtion: assets/js/controllers/dashboardCtrl.js /// -->
+								&lt;!&ndash; /// controller:  'SalesCtrl' -  localtion: assets/js/controllers/dashboardCtrl.js /// &ndash;&gt;
 								<div ng-controller="SalesCtrl" class="height-180">
 									<canvas class="tc-chart" tc-chartjs-bar chart-options="options" chart-data="data" chart-legend="chart2"></canvas>
 									<div tc-chartjs-legend chart-legend="chart2" class="inline pull-left legend-xs"></div>
@@ -219,8 +219,8 @@
 		</div>
 	</div>
 </div>
-<!-- end: FIRST SECTION -->
-<!-- start: SECOND SECTION -->
+&lt;!&ndash; end: FIRST SECTION &ndash;&gt;
+&lt;!&ndash; start: SECOND SECTION &ndash;&gt;
 <div class="container-fluid container-fullw bg-white">
 	<div class="row">
 		<div class="col-sm-8">
@@ -231,7 +231,7 @@
 						<span class="text-light">based on the major browsers</span>
 					</div>
 					<v-accordion>
-						<!-- add expanded attribute to open first section -->
+						&lt;!&ndash; add expanded attribute to open first section &ndash;&gt;
 						<v-pane expanded>
 							<v-pane-header>
 								This Month
@@ -312,7 +312,7 @@
 					<h4 class="panel-title">New Users</h4>
 				</div>
 				<div class="panel-body">
-					<!-- /// controller:  'OnotherCtrl' -  localtion: assets/js/controllers/dashboardCtrl.js /// -->
+					&lt;!&ndash; /// controller:  'OnotherCtrl' -  localtion: assets/js/controllers/dashboardCtrl.js /// &ndash;&gt;
 					<div ng-controller="OnotherCtrl">
 						<div class="text-center">
 							<span class="mini-pie"> <canvas class="tc-chart" tc-chartjs-doughnut chart-options="options" chart-data="data" chart-legend="chart3" width="100"></canvas> <span>{{total}}</span> </span>
@@ -347,8 +347,8 @@
 		</div>
 	</div>
 </div>
-<!-- end: SECOND SECTION -->
-<!-- start: THIRD SECTION -->
+&lt;!&ndash; end: SECOND SECTION &ndash;&gt;
+&lt;!&ndash; start: THIRD SECTION &ndash;&gt;
 <div class="container-fluid container-fullw padding-bottom-10">
 	<div class="row">
 		<div class="col-sm-8">
@@ -490,7 +490,7 @@
 					<h4 class="panel-title">Specialization</h4>
 				</div>
 				<div class="panel-body">
-					<!-- /// controller:  'LastCtrl' -  localtion: static/assets/js/controllers/dashboardCtrl.js /// -->
+					&lt;!&ndash; /// controller:  'LastCtrl' -  localtion: static/assets/js/controllers/dashboardCtrl.js /// &ndash;&gt;
 					<div ng-controller="LastCtrl">
 						<canvas class="tc-chart" tc-chartjs-radar chart-options="options" chart-data="data" chart-legend="chart4"></canvas>
 						<div class="margin-top-20 padding-bottom-5">
@@ -522,13 +522,13 @@
 		</div>
 	</div>
 </div>
-<!-- end: THIRD SECTION -->
-<!-- start: FOURTH SECTION -->
+&lt;!&ndash; end: THIRD SECTION &ndash;&gt;
+&lt;!&ndash; start: FOURTH SECTION &ndash;&gt;
 <div class="container-fluid container-fullw bg-white">
 	<div class="row">
 		<div class="col-xs-12 col-sm-4">
 			<div class="row">
-				<!-- /// controller:  'SparklineCtrl' -  localtion: static/assets/js/controllers/dashboardCtrl.js /// -->
+				&lt;!&ndash; /// controller:  'SparklineCtrl' -  localtion: static/assets/js/controllers/dashboardCtrl.js /// &ndash;&gt;
 				<div ng-controller="SparklineCtrl">
 					<div class="col-md-12">
 						<div class="panel panel-white no-radius">
@@ -656,7 +656,7 @@
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-4">
-			<!-- /// controller:  'ChatCtrl' -  localtion: static/assets/js/controllers/chatCtrl.js /// -->
+			&lt;!&ndash; /// controller:  'ChatCtrl' -  localtion: static/assets/js/controllers/chatCtrl.js /// &ndash;&gt;
 			<div ng-controller="ChatCtrl">
 				<div class="panel panel-white no-radius">
 					<div class="panel-heading border-bottom">
@@ -672,5 +672,5 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>-->
 <!-- end: FOURTH SECTION -->

@@ -32,14 +32,15 @@ app.controller('LoginCtrl', function ($scope, $state,SweetAlert,Members,$filter,
     }
 
     $scope.doLogin = function() {
-        $scope.dataLoading = true;
+        waitingDialog.show('Please Wait...');
         Auth.getUser($scope.user, function (response,user) {
             if (response.success) {
                 $state.go("app.dashboard");
                 $localStorage.user = user;
+                waitingDialog.hide();
             } else {
-                SweetAlert.swal("Log in failed!", "Wrong username and password", "error");
-                $scope.dataLoading = false;
+                SweetAlert.swal("Log in failed!",response.message, "error");
+                waitingDialog.hide();
             }
         });
     };

@@ -1,17 +1,23 @@
 angular.module('esavvy.services', [])
 
-    //.constant('REST_SERVER', 'http://esavvy.rfm.org.za')
-    .constant('REST_SERVER', 'http://localhost:9000')
+    .constant('REST_SERVER', 'http://esavvy.rfm.org.za')
+    //.constant('REST_SERVER', 'http://localhost:9000')
 
 
     .factory('Members',['$http','REST_SERVER', function($http,REST_SERVER) {
         console.log("Rest server url "+REST_SERVER)
         var members = [];
         return {
-            all: function(assemblyId) {
+            all: function(assemblyId,callback) {
                 return $http.get(REST_SERVER+'/ws/member/all/'+assemblyId).
-                    then(function(result) {
-                        return result.data;
+                    then(function (result) {
+                        var members = result.data;
+                        if (members !== null) {
+                            response = { success: true };
+                        } else {
+                            response = { success: false, message: 'Failed to load members from server' };
+                        }
+                        callback(response,members);
                     });
             },
             create:function(data){
@@ -77,6 +83,34 @@ angular.module('esavvy.services', [])
                             response = { success: false, message: 'Username or password is incorrect' };
                         }
                         callback(response,dbUser);
+                    },
+                    function(err) {
+                        console.log(err); // Error: "It broke"
+                        response = { success: false, message: 'Server error' };
+                        callback(response,null);
+                    });
+            }
+        }
+    }])
+    .factory('Tithe', ['$http','REST_SERVER','$state',function($http,REST_SERVER){
+        var user;
+
+        return{
+            addTithes : function(list,callback){
+                var url = REST_SERVER+'/ws/tithe/post/';
+                console.log(url);
+                return $http.post(url,list).
+                    then(function (data) {
+                        var result = data.data;
+                        if (result !== null) {
+                            response = { success: true };
+                        } else {
+                            response = { success: false, message: 'Failed to post tithe transactions to server' };
+                        }
+                        callback(response,result);
+                    },function(error){
+                        console.log(error);
+                        callback(error);
                     });
             }
         }
