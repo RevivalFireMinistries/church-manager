@@ -52,4 +52,5 @@ app.controller('LogoutCtrl', function ($scope, $state,SweetAlert,Members,$filter
    $state.go("login.signin");
     delete $localStorage.user;
     delete $localStorage.members;
+    delete $localStorage.layout;
 });
