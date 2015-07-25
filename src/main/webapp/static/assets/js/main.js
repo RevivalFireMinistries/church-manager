@@ -51,15 +51,12 @@ function ($rootScope, $state, $stateParams,$localStorage,$location) {
         function(event, toState, toParams, fromState, fromParams){
 
             if(fromState.name.includes("login") || toState.name.includes("login")){
-                console.log("PASS............");
                 return;
             }
             else{
                 if(angular.isDefined($localStorage.user)){//already logged in - pass
-                    console.log("proceed user is there : "+$localStorage.user.username);
                     return;
                 }else{
-                    console.log("no user found in storage....login please")
                     event.preventDefault();
                     $state.go("login.signin");
 
