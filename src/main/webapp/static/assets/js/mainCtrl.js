@@ -47,6 +47,9 @@ function ($rootScope, $scope, $state, $translate, $localStorage, $window, $docum
         // {inherit:false} + default options
     });
 
+    //initialise ministry groups
+    $rootScope.ministryGroups =  ["Ushering", "Deacons","Elders","Music"];
+
     $rootScope.pageTitle = function () {
         return $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
     };

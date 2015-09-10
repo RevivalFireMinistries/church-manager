@@ -54,7 +54,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         templateUrl: "static/assets/views/members/new_member.html",
         title: 'New Member',
         icon: 'ti-layout-media-left-alt',
-        controller: 'MembersCtrl',
+        controller: 'NewMembersCtrl',
         ncyBreadcrumb: {
             label: 'New Member'
         }

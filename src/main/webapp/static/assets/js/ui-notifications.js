@@ -123,7 +123,7 @@ var UINotifications = function() {"use strict";
 				text: "It's pretty, isn't it?",
 				confirmButtonColor: "#007AFF"
 			});
-			e.preventDefault
+			e.preventDefaultF
 		});
 
 		$(".success-message").on("click", function(e) {
