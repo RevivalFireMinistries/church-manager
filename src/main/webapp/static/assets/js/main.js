@@ -47,6 +47,8 @@ function ($rootScope, $state, $stateParams,$localStorage,$location) {
         picture: 'app/img/user/02.jpg'
     };
 
+    $rootScope.phoneNumberRegex = rfm.phoneNumberRegex;
+
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams){
 

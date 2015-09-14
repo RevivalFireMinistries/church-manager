@@ -67,6 +67,15 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'View Members'
         }
+    }).state('app.members.viewMember', {
+        url: '/view_member?id',
+        templateUrl: "static/assets/views/members/view_member.html",
+        title: 'View Members',
+        resolve: loadSequence('spin', 'ladda', 'angular-ladda', 'laddaCtrl'),
+        controller : 'ViewMemberCtrl',
+        ncyBreadcrumb: {
+            label: 'View Member'
+        }
     }).state('app.ui.links', {
         url: '/links',
         templateUrl: "static/assets/views/ui_links.html",

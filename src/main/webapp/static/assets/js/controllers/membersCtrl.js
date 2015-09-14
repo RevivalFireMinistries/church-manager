@@ -67,7 +67,8 @@ app.controller('NewMembersCtrl', ['$scope', 'toaster','$rootScope',
     function ($scope, toaster,$rootScope) {
         $scope.myModel = {};
 
-        $scope.myModel.groups = {Elders: true, Deacons: false,Ushering: false,Music: false};;
+        $scope.myModel.groups = rfm.ministryGroups;
+        $scope.countries = rfm.countries;
         $scope.currentStep = 1;
         // Initial Value
         $scope.form = {
@@ -137,3 +138,31 @@ app.controller('NewMembersCtrl', ['$scope', 'toaster','$rootScope',
         };
 
 }]);
+
+app.controller('ViewMemberCtrl', function ($scope, $state, $stateParams,$localStorage,toaster) {
+
+    var memberId = $stateParams.id;
+
+    $scope.member = {};
+
+    var found = false;
+
+    if (angular.isDefined($localStorage.members)) {
+        for(var i = 0; i < $localStorage.members.length;i++){
+            if(memberId == $localStorage.members[i].id){
+                $scope.member = $localStorage.members[i];
+                found = true;
+                break;
+            }
+        }
+        if(!found){
+            toaster.pop('info', 'Info', 'Failed to find member with id '+memberId);
+            $state.go("app.dashboard");
+        }
+
+    }else{
+        toaster.pop('error', 'Error', 'Failed to load member');
+        $state.go("app.dashboard");
+    }
+
+});

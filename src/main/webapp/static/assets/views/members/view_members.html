@@ -19,6 +19,9 @@
                         <td data-title="'Surname'">{{member.lastName}}</td>
                         <td data-title="'Gender'">{{member.gender}}</td>
                         <td data-title="'Phone Number'">{{member.phone}}</td>
+                        <td data-title="''"><a ui-sref="app.members.viewMember({id: member.id})">
+                            view
+                        </a></td>
                     </tr>
                 </table>
             </div>

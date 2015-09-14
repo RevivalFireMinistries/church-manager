@@ -53,7 +53,7 @@
                                     <div class="stepNumber">
                                         4
                                     </div>
-                                    <span class="stepDesc text-small"> Confirm </span>
+                                    <span class="stepDesc text-small"> Finish </span>
                                 </a>
                             </li>
                         </ul>
@@ -63,13 +63,9 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="padding-30">
-                                        <h2 class="StepTitle"><i class="ti-face-smile fa-2x text-primary block margin-bottom-10"></i> Enter your personal information</h2>
-                                        <p>
-                                            This is an added measure against fraud and to help with billing issues.
-                                        </p>
-                                        <p class="text-small">
-                                            Enter security questions in case you lose access to your account.
-                                        </p>
+                                        <h2 class="StepTitle"><i class=" text-primary block margin-bottom-10"></i> Enter the member's  personal information</h2>
+
+
                                     </div>
                                 </div>
                                 <div class="col-md-7">
@@ -101,19 +97,20 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group" ng-class="{'has-error':Form.gender.$dirty && Form.gender.$invalid, 'has-success':Form.gender.$valid}">
                                                     <label class="block">
-                                                        Gender
+                                                        Gender <span class="symbol required"></span>
                                                     </label>
                                                     <div class="clip-radio radio-primary">
-                                                        <input type="radio" id="wz-female" name="gender" value="female" ng-model="myModel.gender">
+                                                        <input type="radio" id="wz-female" name="gender" value="female" ng-model="myModel.gender"  ng-required="currentStep == 1">
                                                         <label for="wz-female">
                                                             Female
                                                         </label>
-                                                        <input type="radio" id="wz-male" name="gender" value="male" ng-model="myModel.gender">
+                                                        <input type="radio" id="wz-male" name="gender" value="male" ng-model="myModel.gender"  ng-required="currentStep == 1">
                                                         <label for="wz-male">
                                                             Male
                                                         </label>
+                                                        <span class="error text-small block" ng-if="Form.gender.$dirty && Form.gender.$invalid">Gender is required</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -123,58 +120,10 @@
                                                         Country of Origin
                                                     </label>
                                                     <select class="form-control" name="country" ng-model="myModel.country">
-                                                        <option value="">&nbsp;</option>
-                                                        <option value="AL">Alabama</option>
-                                                        <option value="AK">Alaska</option>
-                                                        <option value="AZ">Arizona</option>
-                                                        <option value="AR">Arkansas</option>
-                                                        <option value="CA">California</option>
-                                                        <option value="CO">Colorado</option>
-                                                        <option value="CT">Connecticut</option>
-                                                        <option value="DE">Delaware</option>
-                                                        <option value="FL">Florida</option>
-                                                        <option value="GA">Georgia</option>
-                                                        <option value="HI">Hawaii</option>
-                                                        <option value="ID">Idaho</option>
-                                                        <option value="IL">Illinois</option>
-                                                        <option value="IN">Indiana</option>
-                                                        <option value="IA">Iowa</option>
-                                                        <option value="KS">Kansas</option>
-                                                        <option value="KY">Kentucky</option>
-                                                        <option value="LA">Louisiana</option>
-                                                        <option value="ME">Maine</option>
-                                                        <option value="MD">Maryland</option>
-                                                        <option value="MA">Massachusetts</option>
-                                                        <option value="MI">Michigan</option>
-                                                        <option value="MN">Minnesota</option>
-                                                        <option value="MS">Mississippi</option>
-                                                        <option value="MO">Missouri</option>
-                                                        <option value="MT">Montana</option>
-                                                        <option value="NE">Nebraska</option>
-                                                        <option value="NV">Nevada</option>
-                                                        <option value="NH">New Hampshire</option>
-                                                        <option value="NJ">New Jersey</option>
-                                                        <option value="NM">New Mexico</option>
-                                                        <option value="NY">New York</option>
-                                                        <option value="NC">North Carolina</option>
-                                                        <option value="ND">North Dakota</option>
-                                                        <option value="OH">Ohio</option>
-                                                        <option value="OK">Oklahoma</option>
-                                                        <option value="OR">Oregon</option>
-                                                        <option value="PA">Pennsylvania</option>
-                                                        <option value="RI">Rhode Island</option>
-                                                        <option value="SC">South Carolina</option>
-                                                        <option value="SD">South Dakota</option>
-                                                        <option value="TN">Tennessee</option>
-                                                        <option value="TX">Texas</option>
-                                                        <option value="UT">Utah</option>
-                                                        <option value="VT">Vermont</option>
-                                                        <option value="VA">Virginia</option>
-                                                        <option value="WA">Washington</option>
-                                                        <option value="WV">West Virginia</option>
-                                                        <option value="WI">Wisconsin</option>
-                                                        <option value="WY">Wyoming</option>
+                                                        <option value="">-- Select a Country --</option>
+                                                        <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
                                                     </select>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -196,19 +145,7 @@
                                 <div class="col-md-5">
                                     <div class="padding-30">
                                         <h2 class="StepTitle">Contact Info <span class="text-large block">to manage everything you do with ng-Clip</span></h2>
-                                        <p>
-                                            You’ll enjoy personal services and great benefits including:
-                                        </p>
-                                        <p class="text-small">
-                                        <ul class="no-margin">
-                                            <li>
-                                                Access to exclusive releases and limited products.
-                                            </li>
-                                            <li>
-                                                ng-Clip services, benefits and promotions.
-                                            </li>
-                                        </ul>
-                                        </p>
+
                                     </div>
                                 </div>
                                 <div class="col-md-7">
@@ -229,11 +166,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group" ng-class="{'has-error':Form.phone.$dirty && Form.phone.$invalid, 'has-success':Form.phone.$valid}">
                                                     <label class="control-label">
-                                                        Phone <small class="text-warning">(071) 999-9999</small>
+                                                        Phone <small class="text-warning">0719999999</small>
                                                     </label>
                                                     <div class="input-group">
                                                         <span class="input-group-addon"> <i class="fa fa-phone"></i> </span>
-                                                        <input type="text" class="form-control" name="phone" placeholder="(071) 999-9999" ui-mask="(999) 999-9999"  ng-model="myModel.phone" >
+                                                        <input type="number" class="form-control" ng-minlength="10" name="phone" placeholder="(071) 999-9999" ui-mask="(999) 999-9999"  ng-model="myModel.phone" >
+                                                        <span class="error text-small block" ng-if="Form.phone.$invalid && Form.phone.$dirty">Valid phone number is required</span>
+                                                        <span class="error text-small block" ng-if="Form.phone.$error.minlength && Form.phone.$dirty">Phone number should be 10 digits</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,12 +197,6 @@
                                 <div class="col-md-5">
                                     <div class="padding-30">
                                         <h2 class="StepTitle">Enter Ministry details</h2>
-                                        <p class="text-large">
-                                            You will need to enter your billing address and select your payment method.
-                                        </p>
-                                        <p class="text-small">
-                                            You can use most major credit card, as well as PayPal.
-                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-md-7">
@@ -272,26 +205,24 @@
                                             Ministry Details
                                         </legend>
                                         <label>
-                                           Member Type
+                                           Member Type <span class="symbol required"></span>
                                         </label>
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
                                             <div class="clip-radio radio-primary">
-                                                <input type="radio" id="wz-type-fullTime" name="type" value="fullTime" ng-model="myModel.type">
+                                                <input type="radio" id="wz-type-fullTime" name="type" value="fullTime" ng-model="myModel.type" ng-required="currentStep == 3">
                                                 <label for="wz-type-fullTime">
                                                     Full Time
                                                 </label>
-                                                <input type="radio" id="wz-type-guest" name="type" value="guest" ng-model="myModel.type">
+                                                <input type="radio" id="wz-type-guest" name="type" value="guest" ng-model="myModel.type" ng-required="currentStep == 3">
                                                 <label for="wz-type-guest">
                                                     Guest
                                                 </label>
+                                                <span class="error text-small block" ng-if="Form.type.$dirty && Form.type.$invalid">Member type is required</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>
-                                                Select Group(s)/Departments where member belongs
-                                            </label>
                                             <div class="panel-heading">
-                                                <h5 class="panel-title">Ministry groups/departments</h5>
+                                                Select Group(s)/Departments where member belongs
                                             </div>
                                             <div class="panel-body">
 
@@ -325,13 +256,13 @@
                                         <h1 class=" ti-check block text-primary"></h1>
                                         <h2 class="StepTitle">Congratulations!</h2>
                                         <p class="text-large">
-                                            Your tutorial is complete.
-                                        </p>
-                                        <p class="text-small">
-                                            Thank you for your registration. Your transaction has been completed, and a receipt for your purchase has been emailed to you.  You may log into your account to view details of this transaction.
+                                            Member details have been captured succesfully
                                         </p>
                                         <a class="btn btn-primary btn-o" href ng-click="form.goTo(Form, 1)">
-                                            Back to first step
+                                            View member
+                                        </a>
+                                        <a class="btn btn-primary btn-o" href ng-click="form.goTo(Form, 1)">
+                                            Add another member
                                         </a>
                                     </div>
                                 </div>
