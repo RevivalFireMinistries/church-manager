@@ -162,21 +162,25 @@
                                             <label class="control-label">
                                                 First Name
                                             </label>
-                                            <input type="text" placeholder="Enter your first name" class="form-control" name="firstName" ng-model="member.firstName" ng-required="true">
-                                            <span class="success text-small" ng-if="Form.firstName.$valid && Form.firstName.$dirty">Saved!</span>
+                                            <input type="text" placeholder="Enter first name" class="form-control" name="firstName" ng-model="member.firstName" ng-required="true">
+                                            <span class="success text-small" ng-if="Form.firstName.$valid && Form.firstName.$dirty">Ok!</span>
                                             <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid">First Name is required</span>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{'has-error':Form.lastName.$dirty && Form.lastName.$invalid, 'has-success':Form.lastName.$valid}">
                                             <label class="control-label">
                                                 Last Name
                                             </label>
-                                            <input type="text" placeholder="Enter your last name" class="form-control" name="lastName" ng-model="member.lastName">
+                                            <input type="text" placeholder="Enter last name" class="form-control" name="lastName" ng-model="member.lastName" ng-required="true">
+                                            <span class="success text-small" ng-if="Form.lastName.$valid && Form.lastName.$dirty">Ok!</span>
+                                            <span class="error text-small block" ng-if="Form.lastName.$dirty && Form.lastName.$invalid">Last Name is required</span>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid, 'has-success':Form.email.$valid}">
                                             <label class="control-label">
                                                 Email Address
                                             </label>
                                             <input type="email" placeholder="email address" class="form-control" name="email" ng-model="member.email">
+                                            <span class="success text-small" ng-if="Form.email.$valid && Form.email.$dirty">Ok!</span>
+                                            <span class="error text-small block" ng-if="Form.email.$dirty && Form.email.$invalid">Email address is invalid</span>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">
@@ -197,114 +201,20 @@
                                                 Gender
                                             </label>
                                             <div class="clip-radio radio-primary">
-                                                <input type="radio" id="us-female" name="gender" value="female" ng-model="member.gender">
+                                                <input type="radio" id="us-female" name="gender" value="Female" ng-model="member.gender"/>
                                                 <label for="us-female">
                                                     Female
                                                 </label>
-                                                <input type="radio" id="us-male" name="gender" value="male" ng-model="member.gender">
+                                                <input type="radio" id="us-male" name="gender" value="Male" ng-model="member.gender"/>
                                                 <label for="us-male">
                                                     Male
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="control-label">
-                                                        Zip Code
-                                                    </label>
-                                                    <input class="form-control" placeholder="enter a zip code" type="text" name="zipcode" ng-model="member.zipCode">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <label class="control-label">
-                                                        City
-                                                    </label>
-                                                    <input class="form-control" placeholder="enter your city" type="text" name="city" ng-model="member.city">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>
-                                                Image Upload
-                                            </label>
-                                            <div flow-init flow-object="obj.flow">
-                                                <div class="user-image">
-                                                    <div class="thumbnail margin-bottom-5">
-                                                        <img src="static/assets/images/default-user.png" alt="" ng-if="!obj.flow.files.length && noImage">
-                                                        <img ng-src="{{member.avatar}}" alt="" ng-if="!obj.flow.files.length && !noImage">
-                                                        <img flow-img="obj.flow.files[0]" ng-if="obj.flow.files.length">
-                                                    </div>
-                                                </div>
-                                                <div class="user-image-buttons-edit" ng-if="obj.flow.files.length">
-                                                    <span class="btn btn-primary" flow-btn><i class="fa fa-pencil"></i></span>
-                                                    <span class="btn btn-danger" ng-click="obj.flow.cancel()"> <i class="fa fa-times"></i></span>
-                                                </div>
-                                                <div class="user-image-buttons-edit" ng-if="!obj.flow.files.length">
-                                                    <span class="btn btn-primary" flow-btn><i class="fa fa-pencil"></i></span>
-                                                    <span class="btn btn-danger" ng-if="!noImage" ng-click="removeImage()"><i class="fa fa-times"></i> </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <legend>
-                                    Additional Info
-                                </legend>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Twitter
-                                            </label>
-											<span class="input-icon">
-												<input class="form-control" type="text" placeholder="Twitter" name="twitter" ng-model="member.twitter">
-												<i class="fa fa-twitter"></i> </span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Facebook
-                                            </label>
-											<span class="input-icon">
-												<input class="form-control" type="text" placeholder="Facebook" name="facebook" ng-model="member.facebook">
-												<i class="fa fa-facebook"></i> </span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Google Plus
-                                            </label>
-											<span class="input-icon">
-												<input class="form-control" type="text" placeholder="Google Plus" name="google" ng-model="member.google">
-												<i class="fa fa-google-plus"></i> </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Github
-                                            </label>
-											<span class="input-icon">
-												<input class="form-control" type="text" placeholder="Github" name="github" ng-model="member.github">
-												<i class="fa fa-github"></i> </span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Linkedin
-                                            </label>
-											<span class="input-icon">
-												<input class="form-control" type="text" placeholder="Linkedin" name="linkedin" ng-model="member.linkedin">
-												<i class="fa fa-linkedin"></i> </span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Skype
-                                            </label>
-											<span class="input-icon">
-												<input class="form-control" type="text" placeholder="Skype" name="skype" ng-model="member.skype">
-												<i class="fa fa-skype"></i> </span>
+                                        <div class="text-right">
+                                            <a class="btn btn-primary btn-o btn-wide" href="#" ng-show="Form.$dirty === true">
+                                                Save Changes
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -314,179 +224,11 @@
                     <!-- end: TAB EDIT ACCOUNT -->
                     <!-- start: TAB PROJECTS -->
                     <tab heading="Tithe History">
-                        <table class="table" id="projects">
-                            <thead>
-                            <tr>
-                                <th>Project Name</th>
-                                <th class="hidden-xs">Client</th>
-                                <th>Proj Comp</th>
-                                <th class="hidden-xs">%Comp</th>
-                                <th class="hidden-xs center">Priority</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>IT Help Desk</td>
-                                <td class="hidden-xs">Master Company</td>
-                                <td>11 november 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 70%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar" class="progress-bar progress-bar-warning">
-                                            <span class="sr-only"> 70% Complete (danger)</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-danger">Critical</span></td>
-                            </tr>
-                            <tr>
-                                <td>PM New Product Dev</td>
-                                <td class="hidden-xs">Brand Company</td>
-                                <td>12 june 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-info">
-                                            <span class="sr-only"> 40% Complete</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-warning">High</span></td>
-                            </tr>
-                            <tr>
-                                <td>ClipTheme Web Site</td>
-                                <td class="hidden-xs">Internal</td>
-                                <td>11 november 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="90" role="progressbar" class="progress-bar progress-bar-success">
-                                            <span class="sr-only"> 90% Complete</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-success">Normal</span></td>
-                            </tr>
-                            <tr>
-                                <td>Local Ad</td>
-                                <td class="hidden-xs">UI Fab</td>
-                                <td>15 april 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar" class="progress-bar progress-bar-warning">
-                                            <span class="sr-only"> 50% Complete</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-success">Normal</span></td>
-                            </tr>
-                            <tr>
-                                <td>Design new theme</td>
-                                <td class="hidden-xs">Internal</td>
-                                <td>2 october 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 20%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-success">
-                                            <span class="sr-only"> 20% Complete (warning)</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-danger">Critical</span></td>
-                            </tr>
-                            <tr>
-                                <td>IT Help Desk</td>
-                                <td class="hidden-xs">Designer TM</td>
-                                <td>6 december 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-warning">
-                                            <span class="sr-only"> 40% Complete (warning)</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-warning">High</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
+
                     </tab>
 
                     <tab heading="Attendance History">
-                        <table class="table" id="projects">
-                            <thead>
-                            <tr>
-                                <th>Project Name</th>
-                                <th class="hidden-xs">Client</th>
-                                <th>Proj Comp</th>
-                                <th class="hidden-xs">%Comp</th>
-                                <th class="hidden-xs center">Priority</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>IT Help Desk</td>
-                                <td class="hidden-xs">Master Company</td>
-                                <td>11 november 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 70%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar" class="progress-bar progress-bar-warning">
-                                            <span class="sr-only"> 70% Complete (danger)</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-danger">Critical</span></td>
-                            </tr>
-                            <tr>
-                                <td>PM New Product Dev</td>
-                                <td class="hidden-xs">Brand Company</td>
-                                <td>12 june 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-info">
-                                            <span class="sr-only"> 40% Complete</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-warning">High</span></td>
-                            </tr>
-                            <tr>
-                                <td>ClipTheme Web Site</td>
-                                <td class="hidden-xs">Internal</td>
-                                <td>11 november 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="90" role="progressbar" class="progress-bar progress-bar-success">
-                                            <span class="sr-only"> 90% Complete</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-success">Normal</span></td>
-                            </tr>
-                            <tr>
-                                <td>Local Ad</td>
-                                <td class="hidden-xs">UI Fab</td>
-                                <td>15 april 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar" class="progress-bar progress-bar-warning">
-                                            <span class="sr-only"> 50% Complete</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-success">Normal</span></td>
-                            </tr>
-                            <tr>
-                                <td>Design new theme</td>
-                                <td class="hidden-xs">Internal</td>
-                                <td>2 october 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 20%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-success">
-                                            <span class="sr-only"> 20% Complete (warning)</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-danger">Critical</span></td>
-                            </tr>
-                            <tr>
-                                <td>IT Help Desk</td>
-                                <td class="hidden-xs">Designer TM</td>
-                                <td>6 december 2014</td>
-                                <td class="hidden-xs">
-                                    <div class="progress active progress-xs">
-                                        <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-warning">
-                                            <span class="sr-only"> 40% Complete (warning)</span>
-                                        </div>
-                                    </div></td>
-                                <td class="center hidden-xs"><span class="label label-warning">High</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
+
                     </tab>
                     <!-- end: TAB PROJECTS -->
                 </tabset>

@@ -139,7 +139,7 @@ app.controller('NewMembersCtrl', ['$scope', 'toaster','$rootScope',
 
 }]);
 
-app.controller('ViewMemberCtrl', function ($scope, $state, $stateParams,$localStorage,toaster) {
+app.controller('ViewMemberCtrl', function ($scope, $state, $stateParams,$localStorage,toaster,Members) {
 
     var memberId = $stateParams.id;
 
@@ -163,6 +163,15 @@ app.controller('ViewMemberCtrl', function ($scope, $state, $stateParams,$localSt
     }else{
         toaster.pop('error', 'Error', 'Failed to load member');
         $state.go("app.dashboard");
+    }
+
+    $scope.saveChanges = function(form) {
+
+        if(form.$valid){
+            Members.edit($scope.member.id,$scope.member){
+
+            }
+        }
     }
 
 });

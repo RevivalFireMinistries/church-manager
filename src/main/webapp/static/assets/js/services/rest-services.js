@@ -1,7 +1,7 @@
 angular.module('esavvy.services', [])
 
-    //.constant('REST_SERVER', 'http://esavvy.rfm.org.za')
-    .constant('REST_SERVER', 'http://localhost:9000')
+    .constant('REST_SERVER', 'http://esavvy.rfm.org.za')
+    //.constant('REST_SERVER', 'http://localhost:9000')
 
 
     .factory('Members',['$http','REST_SERVER', function($http,REST_SERVER) {
@@ -25,7 +25,14 @@ angular.module('esavvy.services', [])
                 console.log("Member added successfully")
             },
             edit:function(id,data){
-
+                $http.post(REST_SERVER+'/ws/member/update/', {
+                    params: {
+                        id: id,
+                        data: data
+                    }
+                }).then(function (response) {
+                    console.log(response.data);
+                });
             },
             delete:function(id){
 
