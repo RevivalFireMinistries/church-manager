@@ -93,6 +93,6 @@ function ($translateProvider) {
 app.config(['cfpLoadingBarProvider',
 function (cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeBar = true;
-    cfpLoadingBarProvider.includeSpinner = false;
+    cfpLoadingBarProvider.includeSpinner = true;
 
 }]);

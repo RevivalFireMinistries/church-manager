@@ -19,7 +19,7 @@
                     <label for="serviceType">
                         Select Service Type
                     </label>
-                    <select class="cs-select cs-skin-elastic" id="serviceType" ng-model="report.type" required>
+                    <select class="cs-select cs-skin-elastic" id="serviceType" ng-model="report.eventType" required>
                         <option value="" disabled selected>Select a Type</option>
                         <option value="Sunday">Sunday Service</option>
                         <option value="Midweek">Midweek Service</option>
@@ -31,12 +31,12 @@
                     <label class="control-label">
                         Service Date <span class="symbol required"></span>
                     </label>
-                   <input  class="form-control datepicker" ng-model="report.date" type="date" name="date" required>
+                   <input  class="form-control datepicker" ng-model="report.eventDateString" type="date" name="eventDateString" required>
 
                     <span class="error text-small block" ng-if="Form.date.$dirty && Form.date.$invalid">date cannot be blank</span>
 
                 </div>
-                <div class="form-group" ng-class="{'has-error':Form.tithe.$dirty && Form.tithe.$invalid, 'has-success':Form.tithe.$valid}">
+                <div class="form-group" ng-class="{'has-error':Form.tithes.$dirty && Form.tithes.$invalid, 'has-success':Form.tithes.$valid}">
                     <label class="control-label">
                         Total Tithes <span class="symbol required"></span>
                     </label>
@@ -44,13 +44,13 @@
                         <div class="input-group-addon">
                             R
                         </div>
-                        <input type="number" placeholder="Enter the total tithe amount" class="form-control" name="tithe" ng-model="report.tithe" required />
+                        <input type="number" placeholder="Enter the total tithes amount" class="form-control" name="tithes" ng-model="report.tithes" required />
                     </div>
 
-                    <span class="error text-small block" ng-if="Form.tithe.$dirty && Form.tithe.$invalid">Tithe can only be numbers</span>
+                    <span class="error text-small block" ng-if="Form.tithes.$dirty && Form.tithes.$invalid">tithes can only be numbers</span>
 
                 </div>
-                <div class="form-group" ng-class="{'has-error':Form.offering.$dirty && Form.offering.$invalid, 'has-success':Form.offering.$valid}">
+                <div class="form-group" ng-class="{'has-error':Form.offerings.$dirty && Form.offerings.$invalid, 'has-success':Form.offerings.$valid}">
                     <label class="control-label">
                         Total Offerings <span class="symbol required"></span>
                     </label>
@@ -58,8 +58,18 @@
                     <div class="input-group-addon">
                         R
                     </div>
-                    <input type="number" placeholder="Enter the total offering amount" class="form-control" name="offering" ng-model="report.offering" required />
-                    <span class="error text-small block" ng-if="Form.offering.$dirty && Form.offering.$invalid">Offering can only be numbers</span>
+                    <input type="number" placeholder="Enter the total offerings amount" class="form-control" name="offerings" ng-model="report.offerings" required />
+                    <span class="error text-small block" ng-if="Form.offerings.$dirty && Form.offerings.$invalid">offerings can only be numbers</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':Form.attendance.$dirty && Form.offerings.$invalid, 'has-success':Form.offerings.$valid}">
+                    <label class="control-label">
+                        Attendance<span class="symbol required"></span>
+                    </label>
+                    <div class="input-group">
+
+                        <input type="number" placeholder="Enter the attendance" class="form-control" name="attendance" ng-model="report.attendance" required />
+                        <span class="error text-small block" ng-if="Form.attendance.$dirty && Form.attendance.$invalid">Attendance can only be numbers</span>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{'has-error':Form.comment.$dirty && Form.comment.$invalid, 'has-success':Form.comment.$valid}">

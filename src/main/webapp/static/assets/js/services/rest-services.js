@@ -57,8 +57,20 @@ angular.module('esavvy.services', [])
                     });
             },
             create:function(data){
-                $http.post(REST_SERVER+'/ws/member/event/add/',data);
-                console.log("Report sent successfully")
+                var url = REST_SERVER+'/ws/member/event/add/';
+                var req = {
+                    method: 'POST',
+                    url: url,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                }
+                return $http(req).
+                    then(function (response) {
+                    console.log(response.data);
+                });
             },
             edit:function(id,data){
 
