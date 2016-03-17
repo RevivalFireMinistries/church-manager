@@ -10,43 +10,68 @@
 app.controller('MembersCtrl', function ($scope, $state,SweetAlert,Members,$filter, ngTableParams,$localStorage) {
 
     var data = {};
+    waitingDialog.show('Please Wait...');
 
-     if (angular.isDefined($localStorage.members)) {
-        console.log("already in local storage -- found members")
-         data = $localStorage.members;
+     if (!angular.isDefined($localStorage.members)) {
 
-    } else {
          //load from REST
          console.log("No members in local...load from rest")
 
          Members.all($localStorage.user.assemblyId, function (response,members) {
              if (response.success) {
-                 data = members;
+
                  $localStorage.members = members;
+
+                 data = $localStorage.members;
+
+                 $scope.tableParams = new ngTableParams({
+                     page: 1, // show first page
+                     count: 10, // count per page
+                     filter: {
+                         name: 'M' // initial filter
+                     }
+                 }, {
+                     total: data.length, // length of data
+                     getData: function ($defer, params) {
+                         // use build-in angular filter
+                         var orderedData = params.filter() ? $filter('filter')(data, params.filter()) : data;
+                         $scope.members = data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                         params.total(data.length);
+                         // set total for recalc pagination
+                         $defer.resolve($scope.members);
+                     }
+                 });
+                 waitingDialog.hide();
              } else {
+                 waitingDialog.hide();
                  SweetAlert.swal("Error!", "Could not load members list", "error");
              }
          });
 
-    }
+    }else{
+         data = $localStorage.members;
 
-    $scope.tableParams = new ngTableParams({
-        page: 1, // show first page
-        count: 10, // count per page
-        filter: {
-            name: 'M' // initial filter
-        }
-    }, {
-        total: data.length, // length of data
-        getData: function ($defer, params) {
-            // use build-in angular filter
-            var orderedData = params.filter() ? $filter('filter')(data, params.filter()) : data;
-            $scope.members = data.slice((params.page() - 1) * params.count(), params.page() * params.count());
-            params.total(data.length);
-            // set total for recalc pagination
-            $defer.resolve($scope.members);
-        }
-    });
+         $scope.tableParams = new ngTableParams({
+             page: 1, // show first page
+             count: 10, // count per page
+             filter: {
+                 name: 'M' // initial filter
+             }
+         }, {
+             total: data.length, // length of data
+             getData: function ($defer, params) {
+                 // use build-in angular filter
+                 var orderedData = params.filter() ? $filter('filter')(data, params.filter()) : data;
+                 $scope.members = data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                 params.total(data.length);
+                 // set total for recalc pagination
+                 $defer.resolve($scope.members);
+             }
+         });
+         waitingDialog.hide();
+     }
+
+
 
     $scope.createMember = function(form){
         if(form.$valid){
@@ -168,9 +193,9 @@ app.controller('ViewMemberCtrl', function ($scope, $state, $stateParams,$localSt
     $scope.saveChanges = function(form) {
 
         if(form.$valid){
-            Members.edit($scope.member.id,$scope.member){
+         /*   Members.edit($scope.member.id,$scope.member){
 
-            }
+            });*/
         }
     }
 

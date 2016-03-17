@@ -12,13 +12,13 @@
     <div class="row">
         <div class="col-md-12">
             <!-- /// controller:  'ngTableCtrl3' -  localtion: assets/js/controllers/ngTableCtrl.js /// -->
-            <div>
-                <table ng-table="tableParams" show-filter="true" class="table table-striped">
+            <div class="table-responsive">
+                <table ng-table="tableParams" show-filter="true" class="table table-bordered table-hover">
                     <tr ng-repeat="member in $data">
-                        <td data-title="'First Name'" filter="{ 'firstName': 'text' }"> {{member.firstName}} </td>
-                        <td data-title="'Surname'">{{member.lastName}}</td>
-                        <td data-title="'Gender'">{{member.gender}}</td>
+                        <td data-title="'First Name'" filter="{ 'firstName': 'text' }"><a ui-sref="app.members.viewMember({id: member.id})"> {{member.firstName}} </a></td>
+                        <td data-title="'Surname'"><a ui-sref="app.members.viewMember({id: member.id})">{{member.lastName}}</a></td>
                         <td data-title="'Phone Number'">{{member.phone}}</td>
+                        <td data-title="'Gender'">{{member.gender}}</td>
                         <td data-title="''"><a ui-sref="app.members.viewMember({id: member.id})">
                             view
                         </a></td>

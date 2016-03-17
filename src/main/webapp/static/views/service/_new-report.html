@@ -37,15 +37,15 @@
         <form name="reportForm" ng-submit="submitForm()" novalidate>
 
             <!-- NAME -->
-            <div class="form-group" ng-class="{ 'has-error' : reportForm.type.$invalid }">
+            <div class="form-group" ng-class="{ 'has-error' : reportForm.eventType.$invalid }">
                 <label>Service Type <span class="symbol required"></span></label>
-                <select class="cs-select cs-skin-elastic" ng-model="report.type" name="type" required>
+                <select class="cs-select cs-skin-elastic" ng-model="report.eventType" name="eventType" required>
                     <option value="Sunday Service" >Please Select</option>
                     <option value="Sunday Service" >Sunday Service</option>
                     <option value="Midweek Service">Midweek Service</option>
                     <option value="Other">Other</option>
                 </select>
-                <p ng-show="reportForm.type.$invalid" class="help-block">Service type is required.</p>
+                <p ng-show="reportForm.eventType.$invalid" class="help-block">Service type is required.</p>
             </div>
 
             <!-- Date -->
