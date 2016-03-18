@@ -87,6 +87,7 @@
 <script src="static/assets/js/controllers/mainCtrl.js"></script>
 <script src="static/assets/js/controllers/bootstrapCtrl.js"></script>
 <script src="static/assets/js/waiting.js"></script>
+<script src="static/assets/js/moment.min.js"></script>
 
 
 <!-- Google Apis -->
