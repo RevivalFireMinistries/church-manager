@@ -10,38 +10,54 @@ app.controller('TitheCtrl', function ($scope, $state,SweetAlert,Members,$localSt
     $scope.members = $localStorage.members;
     $scope.tithe = {};
 
+    $scope.form = {
 
-// Add a Item to the list
-    $scope.addTithe = function () {
-        $scope.success = null;
-        $scope.error = null;
+        submit: function (form) {
+            var firstError = null;
+            if (form.$invalid) {
 
-        if((!angular.isUndefined($scope.tithe.selected) && $scope.tithe.amount > 0) && $scope.tithe.date != null){
-            var tithe  = {
-                member: $scope.tithe.selected,
-                date: $scope.tithe.date,
-                amount: $scope.tithe.amount
-            }
-            if(!checkIfExistsInList(tithe)){
-                $scope.tithes.push(tithe);
-            }
-            else{
-                SweetAlert.swal("Hey...","Looks like you already have a similar transaction on the list", "warning");
+                var field = null, firstError = null;
+                for (field in form) {
+                    if (field[0] != '$') {
+                        if (firstError === null && !form[field].$valid) {
+                            firstError = form[field].$name;
+                        }
+
+                        if (form[field].$pristine) {
+                            form[field].$dirty = true;
+                        }
+                    }
+                }
+
+                angular.element('.ng-invalid[name=' + firstError + ']').focus();
+                SweetAlert.swal("Tithe cannot be submitted because it contains validation errors!", "Errors are marked with a red, dashed border!", "error");
                 return;
+
+            } else {
+                if(!checkIfExistsInList($scope.tithe)){
+
+                    SweetAlert.swal("Success", "Your tithe has been added to the list", "success");
+                    //your code for submit
+                    $scope.tithes.push($scope.tithe);
+                    $scope.tithe = {};
+                    form.$setPristine(true);
+                }
+                else{
+                    SweetAlert.swal("Hey...","Looks like you already have a similar transaction on the list", "warning");
+                    return;
+                }
+
             }
-        }else{
-            $scope.error = "Please complete all fields";
-            return;
+
+        },
+        reset: function (form) {
+
+            $scope.tithe = {};
+            form.$setPristine(true);
+
         }
-
-
-        // Clear input fields after push
-
-        $scope.tithe.amount = "";
-
-        $scope.success = "Tithe has been added to the list";
-
     };
+
 
 
     $scope.saveTithes = function(){
@@ -67,7 +83,7 @@ app.controller('TitheCtrl', function ($scope, $state,SweetAlert,Members,$localSt
         }
 
         for(var i=0;i<$scope.tithes.length;i++){
-            if(((tithe.member.id === $scope.tithes[i].member.id) && (tithe.date === $scope.tithes[i].date)) && (tithe.amount === $scope.tithes[i].amount) ){
+            if(((tithe.member.id === $scope.tithes[i].member.id) && (moment(tithe.date).isSame(moment($scope.tithes[i].date)))) && (tithe.amount == $scope.tithes[i].amount) ){
                 return true;
             }
         }

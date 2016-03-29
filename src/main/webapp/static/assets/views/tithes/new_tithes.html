@@ -4,6 +4,7 @@
             <div class="panel-heading">
                 <h5 class="panel-title">New Tithe Entry</h5>
             </div>
+            <form name="Form" id="form1" novalidate ng-submit="form.submit(Form)">
             <div class="panel-body">
                 <div class="alert alert-danger" ng-show="error != null">
                     <button data-ct-dismiss="alert" class="close">
@@ -18,12 +19,12 @@
                     {{success}}
                 </div>
 
-                    <div class="form-group">
-                        <label>
-                            Member
+                    <div class="form-group" ng-class="{'has-error':Form.member.$dirty && Form.member.$invalid, 'has-success':Form.selected.$valid}">
+                        <label class="control-label">
+                            Name <span class="symbol required"></span>
                         </label>
-                        <ui-select ng-model="tithe.selected" theme="bootstrap" name="member">
-                            <ui-select-match placeholder="Type a member's name/surname...">
+                        <ui-select ng-model="tithe.member" theme="bootstrap" name="member" required>
+                            <ui-select-match placeholder="Type a member's name/surname..." >
                                 {{$select.selected.firstName }} {{$select.selected.lastName }} {{$select.selected.phone }}
                             </ui-select-match>
                             <ui-select-choices repeat="item in members | filter: $select.search">
@@ -31,14 +32,16 @@
                                 <small ng-bind-html="item.phone | highlight: $select.search"></small>
                             </ui-select-choices>
                         </ui-select>
+                        <span class="error text-small block" ng-if="Form.member.$dirty && Form.member.$invalid">Please select a person</span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error':Form.date.$dirty && Form.date.$invalid, 'has-success':Form.date.$valid}">
                         <label class="control-label">
                             Tithe Date <span class="symbol required"></span>
                         </label>
                         <input  class="form-control datepicker" ng-model="tithe.date" type="date" name="date" required>
+                        <span class="error text-small block" ng-if="Form.date.$dirty && Form.date.$error.required">Date is required.</span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error':Form.amount.$dirty && Form.amount.$invalid, 'has-success':Form.amount.$valid}">
                         <label class="control-label">
                             Amount <span class="symbol required"></span>
                         </label>
@@ -49,13 +52,18 @@
                             <input type="number" placeholder="Enter the tithe amount" class="form-control" name="amount" ng-model="tithe.amount" required />
                         </div>
 
-                        <span class="error text-small block" ng-if="Form.tithe.$dirty && Form.tithe.$invalid">Tithe can only be numbers</span>
-
+                        <span class="error text-small block" ng-if="!Form.amount.$error.required && Form.amount.$invalid">Tithe amount can only be numbers</span>
+                        <span class="error text-small block" ng-if="Form.amount.$dirty && Form.amount.$error.required">Tithe amount is required.</span>
                     </div>
-                    <button type="button" class="btn btn-o btn-primary" ng-click="addTithe()">
-                        Add Tithe to List
-                    </button>
+
+                <button type="submit" class="btn btn-primary">
+                    Add Tithe to List
+                </button>
+                <button type="reset" class="btn btn-primary btn-o" ng-click="form.reset(Form)">
+                    Clear Form
+                </button>
             </div>
+            </form>
         </div>
     </div>
     </div>
