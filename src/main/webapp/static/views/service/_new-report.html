@@ -67,7 +67,7 @@
 
             <!-- Offering -->
             <div class="form-group" ng-class="{ 'has-error' : reportForm.offering.$invalid && !reportForm.offering.$pristine }">
-                <label>Offering</label>
+                <label>Offerings</label>
                 <input  type="text" placeholder="Enter the total offering" ng-pattern="NumberRegex"  name="offering" class="form-control" ng-model="report.offering" >
                 <p ng-show="reportForm.offering.$error.pattern" class="help-block">Offering cannot only be numbers.</p>
             </div>
