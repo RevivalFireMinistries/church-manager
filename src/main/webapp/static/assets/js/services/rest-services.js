@@ -1,15 +1,15 @@
 angular.module('esavvy.services', [])
 
-    .constant('REST_SERVER', 'http://esavvy.rfm.org.za')
-    //.constant('REST_SERVER', 'http://localhost:9000')
+    //.constant('REST_SERVER', 'http://esavvy.rfm.org.za')
+    .constant('REST_SERVER', 'http://localhost:8000')
 
 
-    .factory('Members',['$http','REST_SERVER', function($http,REST_SERVER) {
+    .factory('Members',['$http','REST_SERVER','$localStorage', function($http,REST_SERVER,$localStorage) {
         console.log("Rest server url "+REST_SERVER)
         var members = [];
         return {
             all: function(assemblyId,callback) {
-                return $http.get(REST_SERVER+'/ws/member/all/'+assemblyId).
+                return $http.get(REST_SERVER+'/assemblies/'+$localStorage.user.assembly+'/members').
                     then(function (result) {
                         var members = result.data;
                         if (members !== null) {
@@ -20,18 +20,19 @@ angular.module('esavvy.services', [])
                         callback(response,members);
                     });
             },
-            create:function(data){
-                $http.post(REST_SERVER+'/ws/member/add/',data);
-                console.log("Member added successfully")
+            create:function(data,callback){
+                $http.post(REST_SERVER+'/assemblies/'+$localStorage.user.assembly+'/member/',data).
+                    then(function(response){
+                        callback(response.data);
+                    });
             },
-            edit:function(id,data){
-                $http.post(REST_SERVER+'/ws/member/update/', {
+            edit:function(member,callback){
+                $http.put(REST_SERVER+'/assemblies/'+$localStorage.user.assembly+'/member/'+member.id, {
                     params: {
-                        id: id,
-                        data: data
+                        data: member
                     }
                 }).then(function (response) {
-                    console.log(response.data);
+                    callback(response.data);
                 });
             },
             delete:function(id){
@@ -91,22 +92,24 @@ angular.module('esavvy.services', [])
 
         return{
             getUser : function(formUser,callback){
-                var url = REST_SERVER+'/ws/user/user/'+formUser.username;
-                console.log(url);
-                return $http.get(url).
-                    then(function (data) {
-                        var dbUser = data.data;
-                        if (dbUser !== null && dbUser.password === formUser.password) {
-                            response = { success: true };
-                        } else {
-                            response = { success: false, message: 'Username or password is incorrect' };
-                        }
-                        callback(response,dbUser);
+                var url = REST_SERVER+'/auth/login';
+                var req = {
+                    method: 'POST',
+                    url: url,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    data: formUser
+                }
+                return $http(req).
+                    then(function (resp) {
+                        callback(resp.data);
                     },
                     function(err) {
                         console.log(err); // Error: "It broke"
-                        response = { success: false, message: 'Server error' };
-                        callback(response,null);
+                        response = { status: 0, message: 'Server error' };
+                        callback(response);
                     });
             }
         }
@@ -115,14 +118,20 @@ angular.module('esavvy.services', [])
         var user;
 
         return{
-            addTithes : function(list,callback){
-                var url = REST_SERVER+'/ws/tithe/post/';
-                console.log(url);
-                return $http.post(url,list).
+            addTithes : function(tithe,callback){
+                var tithejson = JSON.stringify(tithe);
+                var url = REST_SERVER+'/ws/member/tithe/add/';
+
+                var config = {
+                    headers : {
+                        'Content-Type': 'application/json;charset=utf-8;'
+                    }
+                }
+                return $http.post(url,tithejson,config).
                     then(function (data) {
                         var result = data.data;
                         if (result !== null) {
-                            response = { success: true };
+                            response = result.success;
                         } else {
                             response = { success: false, message: 'Failed to post tithe transactions to server' };
                         }

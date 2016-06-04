@@ -33,10 +33,10 @@ app.controller('LoginCtrl', function ($scope, $state,SweetAlert,Members,$filter,
 
     $scope.doLogin = function() {
         waitingDialog.show('Please Wait...');
-        Auth.getUser($scope.user, function (response,user) {
-            if (response.success) {
+        Auth.getUser($scope.user, function (response) {
+            if (response.status == 0 && response.user != null) {
                 $state.go("app.dashboard");
-                $localStorage.user = user;
+                $localStorage.user = response.user;
                 waitingDialog.hide();
             } else {
                 SweetAlert.swal("Log in failed!",response.message, "error");

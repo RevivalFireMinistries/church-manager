@@ -75,9 +75,16 @@ app.controller('MembersCtrl', function ($scope, $state,SweetAlert,Members,$filte
 
     $scope.createMember = function(form){
         if(form.$valid){
-            Reports.create(JSON.stringify($scope.report) );
-            $state.go("app.dashboard");
-            SweetAlert.swal("Success!", "The report has been captured successfully", "success");
+            Members.create(JSON.stringify($scope.member) ,function(response){
+                if(response.status == 0){
+                    $state.go("app.dashboard");
+                    SweetAlert.swal("Success!", "The member has been created successfully", "success");
+                }else{
+                    $state.go("app.dashboard");
+                    SweetAlert.swal("Error!", response.message, "error");
+                }
+            });
+
         }
         else{
             SweetAlert.swal("The form cannot be submitted because it contains validation errors!", "", "error");
@@ -88,11 +95,9 @@ app.controller('MembersCtrl', function ($scope, $state,SweetAlert,Members,$filte
 
 });
 
-app.controller('NewMembersCtrl', ['$scope', 'toaster','$rootScope',
-    function ($scope, toaster,$rootScope) {
+app.controller('NewMembersCtrl', ['$scope', 'toaster','$rootScope','Members','$state','$localStorage',
+    function ($scope, toaster,$rootScope,Members,$state,$localStorage) {
         $scope.myModel = {};
-
-        $scope.myModel.groups = rfm.ministryGroups;
         $scope.countries = rfm.countries;
         $scope.currentStep = 1;
         // Initial Value
@@ -140,11 +145,27 @@ app.controller('NewMembersCtrl', ['$scope', 'toaster','$rootScope',
                         errorMessage();
                 }
             },
-            submit: function () {
+            submit: function (form) {
+                if(form.$invalid){
+                    errorMessage(3);
+                }else{
+                    waitingDialog.show('Please Wait...');
+                    Members.create($scope.myModel ,function(response){
+                        if(response.status == 0){
+                            delete $localStorage.members;  //force server sync
+                            waitingDialog.hide();
+                            goToStep(4);
+                        }else{
+                            waitingDialog.hide();
+                            goToStep(5);
+                        }
+                    });
+                }
 
             },
-            reset: function () {
-
+            exit: function () {
+                $scope.myModel = {};
+                $state.go("app.dashboard");
             }
         };
 
@@ -193,9 +214,14 @@ app.controller('ViewMemberCtrl', function ($scope, $state, $stateParams,$localSt
     $scope.saveChanges = function(form) {
 
         if(form.$valid){
-         /*   Members.edit($scope.member.id,$scope.member){
+            Members.edit($scope.member,function(response){
 
-            });*/
+                if(response.status == 0){
+                   $scope.success = "Member details have been updated successfully";
+                }else{
+                   $scope.error = response.message;
+                }
+            });
         }
     }
 

@@ -16,7 +16,7 @@
             <!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
             <div ng-controller="ViewMemberCtrl">
                 <!-- start: USER TABSET -->
-                <tabset class="tabbable">
+                <tabset class="tabbable" active="false">
                     <!-- start: TAB OVERVIEW -->
                     <tab heading="Overview">
                         <div class="row">
@@ -152,6 +152,18 @@
                     <!-- start: TAB EDIT ACCOUNT -->
                     <tab heading="Edit Info" active="editActive">
                         <form name="Form" id="form" novalidate>
+                            <div class="alert alert-success" ng-show="error">
+                                <button data-ct-dismiss="alert" class="close">
+                                    &times;
+                                </button>
+                              {{error}}
+                            </div>
+                            <div class="alert alert-danger" ng-show="success">
+                                <button data-ct-dismiss="alert" class="close">
+                                    &times;
+                                </button>
+                               {{success}}
+                            </div>
                             <fieldset>
                                 <legend>
                                     Member Info
@@ -194,7 +206,7 @@
                                             </label>
                                             <textarea type="text" placeholder="Enter Home Address" class="form-control" name="url" ng-model="member.homeAddress"/>
                                         </div>
-                                    </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="block">
@@ -211,11 +223,15 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="text-right">
-                                            <a class="btn btn-primary btn-o btn-wide" href="#" ng-show="Form.$dirty === true">
+                                        <div class="row buttons-widget">
+                                            <a class="btn btn-primary btn-o btn-wide" ng-click="saveChanges(Form)" ng-disabled="Form.$dirty != true">
                                                 Save Changes
                                             </a>
+                                            <a class="btn btn-default btn-o btn-wide" href="#" ng-disabled="Form.$dirty != true">
+                                               Cancel
+                                            </a>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </fieldset>

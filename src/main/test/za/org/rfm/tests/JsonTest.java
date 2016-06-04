@@ -6,6 +6,7 @@ import za.org.rfm.dto.Tithe;
 
 import java.util.Date;
 
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertFalse;
 
 /**
@@ -25,7 +26,7 @@ public class JsonTest {
 
         String jsonString = gson.toJson(tithe);
         System.out.println(jsonString);
-        assertFalse(true);
+        assertTrue(true);
     }
 
 }

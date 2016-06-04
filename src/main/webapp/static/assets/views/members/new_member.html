@@ -4,6 +4,12 @@
         <div class="col-sm-8">
             <h1 class="mainTitle" translate="sidebar.nav.members.NEW">{{ title }}</h1>
             <span class="mainDescription">Add New Member Details</span>
+            <div class="alert alert-danger" ng-show="error">
+                <button data-ct-dismiss="alert" class="close">
+                    &times;
+                </button>
+               {{error}}
+            </div>
         </div>
         <div ncy-breadcrumb></div>
     </div>
@@ -81,7 +87,6 @@
                                                     </label>
                                                     <input type="text" placeholder="Enter your First Name" class="form-control" name="firstName" ng-model="myModel.firstName" ng-required="currentStep == 1"/>
                                                     <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid">First Name is required</span>
-                                                    <span class="success text-small" ng-if="Form.firstName.$valid">Thank You!</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -91,7 +96,6 @@
                                                     </label>
                                                     <input type="text" placeholder="Enter your Last Name" class="form-control" name="lastName" ng-model="myModel.lastName" ng-required="currentStep == 1" />
                                                     <span class="error text-small block" ng-if="Form.lastName.$dirty && Form.lastName.$invalid">Last Name is required</span>
-                                                    <span class="success text-small" ng-if="Form.lastName.$valid">Wonderful!</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -144,7 +148,7 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="padding-30">
-                                        <h2 class="StepTitle">Contact Info <span class="text-large block">to manage everything you do with ng-Clip</span></h2>
+                                        <h2 class="StepTitle">Contact Info <span class="text-large block">for member notifications and marketing</span></h2>
 
                                     </div>
                                 </div>
@@ -158,21 +162,21 @@
                                                 Email <span class="symbol required"></span>
                                             </label>
                                             <input type="email" placeholder="Enter a valid E-mail" class="form-control" name="email" ng-model="myModel.email" >
-                                            <span class="error text-small block" ng-if="Form.email.$dirty && Form.email.$error.required">Email is required.</span>
-                                            <span class="error text-small block" ng-if="Form.email.$error.email">Please, enter a valid email address.</span>
-                                            <span class="success text-small" ng-if="Form.email.$valid">It's a valid e-mail!</span>
+                                            <span class="error text-small block" ng-if="myModel.email.length && Form.email.$error.email">Please, enter a valid email address.</span>
+                                            <span class="success text-small" ng-if="myModel.email.length && Form.email.$valid">It's a valid e-mail!</span>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group" ng-class="{'has-error':Form.phone.$dirty && Form.phone.$invalid, 'has-success':Form.phone.$valid}">
                                                     <label class="control-label">
-                                                        Phone <small class="text-warning">0719999999</small>
+                                                        Phone e.g <small class="text-warning">0719999999</small>
                                                     </label>
                                                     <div class="input-group">
                                                         <span class="input-group-addon"> <i class="fa fa-phone"></i> </span>
-                                                        <input type="number" class="form-control" ng-minlength="10" name="phone" placeholder="(071) 999-9999" ui-mask="(999) 999-9999"  ng-model="myModel.phone" >
-                                                        <span class="error text-small block" ng-if="Form.phone.$invalid && Form.phone.$dirty">Valid phone number is required</span>
+                                                        <input type="number" class="form-control" ng-minlength="10" ng-maxlength="10" name="phone" placeholder="(071) 999-9999" ui-mask="(999) 999-9999" ng-required="currentStep == 2"  ng-model="myModel.phone" >
                                                         <span class="error text-small block" ng-if="Form.phone.$error.minlength && Form.phone.$dirty">Phone number should be 10 digits</span>
+                                                        <span class="error text-small block" ng-if="Form.phone.$error.maxlength && Form.phone.$dirty">Phone number should be 10 digits</span>
+                                                        <span class="success text-small" ng-if="myModel.email.length && Form.email.$valid">Phone number correct!</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -220,27 +224,14 @@
                                                 <span class="error text-small block" ng-if="Form.type.$dirty && Form.type.$invalid">Member type is required</span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="panel-heading">
-                                                Select Group(s)/Departments where member belongs
-                                            </div>
-                                            <div class="panel-body">
 
-                                                <div class="checkbox  check-primary" ng-repeat="(group,enabled) in myModel.groups">
-                                                    <input type="checkbox" ng-model="myModel.groups[group]" value="enabled">
-                                                    <label>
-                                                       {{group}}
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                     </fieldset>
                                     <div class="form-group">
                                         <button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="form.prev(Form)">
                                             <i class="fa fa-circle-arrow-left"></i> Back
                                         </button>
-                                        <button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="form.next(Form)">
+                                        <button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="form.submit(Form)">
                                             Next <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                     </div>
@@ -258,11 +249,36 @@
                                         <p class="text-large">
                                             Member details have been captured succesfully
                                         </p>
-                                        <a class="btn btn-primary btn-o" href ng-click="form.goTo(Form, 1)">
-                                            View member
+                                        <a class="btn btn-primary btn-o" ui-sref="app.members.view">
+                                            View members
                                         </a>
                                         <a class="btn btn-primary btn-o" href ng-click="form.goTo(Form, 1)">
                                             Add another member
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step-5"  ng-show="currentStep == 5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-center">
+                                        <h1 class=" ti-close block text-danger"></h1>
+                                        <h2 class="StepTitle">Error!</h2>
+                                        <p class="text-large text-danger">
+
+                                        </p>
+                                        <div class="alert alert-danger">
+                                            <button data-ct-dismiss="alert" class="close">
+                                                &times;
+                                            </button>
+                                           Sorry, encountered an error in trying to save member to database
+                                        </div>
+                                        <a class="btn btn-primary btn-o ti-close" href ng-click="form.exit()">
+                                            Exit
+                                        </a>
+                                        <a class="btn btn-primary btn-o ti-reload" href ng-click="form.submit(Form)">
+                                            Try Again
                                         </a>
                                     </div>
                                 </div>
