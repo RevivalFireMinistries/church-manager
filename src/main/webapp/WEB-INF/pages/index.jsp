@@ -61,6 +61,8 @@
 <script src="static/vendor/loadingbar/loading-bar.min.js"></script>
 <!-- Angular Scroll -->
 <script src="static/vendor/angular-scroll/angular-scroll.min.js"></script>
+<!-- Underscore JS -->
+<script src="static/vendor/underscore/underscore-min.js"></script>
 
 <!-- RFM REST API -->
 <script src="static/assets/js/services/rest-services.js"></script>

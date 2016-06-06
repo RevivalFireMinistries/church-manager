@@ -139,9 +139,13 @@
                                         </tbody>
                                     </table>
                                     <div class="text-right">
-                                        <a class="btn btn-primary btn-o btn-wide" href="#" ng-click="editActive = true">
-                                            Edit Account
-                                        </a>
+                                        <button class="btn btn-primary btn-o btn-wide" ng-click="deleteMember(Form)">
+                                            Delete <i class="fa fa-trash"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-o btn-wide" ng-click="editActive = true">
+                                            Edit <i class="fa fa-edit"></i>
+                                        </button>
+
                                     </div>
                                 </div>
                             </div>
@@ -152,13 +156,13 @@
                     <!-- start: TAB EDIT ACCOUNT -->
                     <tab heading="Edit Info" active="editActive">
                         <form name="Form" id="form" novalidate>
-                            <div class="alert alert-success" ng-show="error">
+                            <div class="alert alert-danger" ng-show="error">
                                 <button data-ct-dismiss="alert" class="close">
                                     &times;
                                 </button>
                               {{error}}
                             </div>
-                            <div class="alert alert-danger" ng-show="success">
+                            <div class="alert alert-success" ng-show="success">
                                 <button data-ct-dismiss="alert" class="close">
                                     &times;
                                 </button>
@@ -174,7 +178,7 @@
                                             <label class="control-label">
                                                 First Name
                                             </label>
-                                            <input type="text" placeholder="Enter first name" class="form-control" name="firstName" ng-model="member.firstName" ng-required="true">
+                                            <input type="text" placeholder="Enter first name" class="form-control" name="firstName" ng-model="edit.firstName" ng-required="true">
                                             <span class="success text-small" ng-if="Form.firstName.$valid && Form.firstName.$dirty">Ok!</span>
                                             <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid">First Name is required</span>
                                         </div>
@@ -182,7 +186,7 @@
                                             <label class="control-label">
                                                 Last Name
                                             </label>
-                                            <input type="text" placeholder="Enter last name" class="form-control" name="lastName" ng-model="member.lastName" ng-required="true">
+                                            <input type="text" placeholder="Enter last name" class="form-control" name="lastName" ng-model="edit.lastName" ng-required="true">
                                             <span class="success text-small" ng-if="Form.lastName.$valid && Form.lastName.$dirty">Ok!</span>
                                             <span class="error text-small block" ng-if="Form.lastName.$dirty && Form.lastName.$invalid">Last Name is required</span>
                                         </div>
@@ -190,46 +194,46 @@
                                             <label class="control-label">
                                                 Email Address
                                             </label>
-                                            <input type="email" placeholder="email address" class="form-control" name="email" ng-model="member.email">
+                                            <input type="email" placeholder="email address" class="form-control" name="email" ng-model="edit.email">
                                             <span class="success text-small" ng-if="Form.email.$valid && Form.email.$dirty">Ok!</span>
-                                            <span class="error text-small block" ng-if="Form.email.$dirty && Form.email.$invalid">Email address is invalid</span>
+                                            <span class="error text-small block" ng-show="Form.email.$dirty && Form.email.$invalid">Email address is invalid</span>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{'has-error':Form.phone.$dirty && Form.phone.$invalid, 'has-success':Form.phone.$valid}">
                                             <label class="control-label">
                                                 Phone
                                             </label>
-                                            <input type="text" placeholder="phone number" class="form-control" name="phone" ng-model="member.phone"  ng-pattern="phoneNumberRegex">
+                                            <span class="error text-small block" ng-show="Form.phone.$dirty && Form.phone.$invalid">Phone number is invalid</span>
+                                            <input type="text" placeholder="phone number" class="form-control" name="phone" ng-model="edit.phone"  ng-pattern="phoneNumberRegex">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">
                                                 Home Address
                                             </label>
-                                            <textarea type="text" placeholder="Enter Home Address" class="form-control" name="url" ng-model="member.homeAddress"/>
+                                            <textarea type="text" placeholder="Enter Home Address" class="form-control" name="url" ng-model="edit.homeAddress"/>
                                         </div>
 
-                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="block">
                                                 Gender
                                             </label>
                                             <div class="clip-radio radio-primary">
-                                                <input type="radio" id="us-female" name="gender" value="Female" ng-model="member.gender"/>
+                                                <input type="radio" id="us-female" name="gender" value="Female" ng-model="edit.gender"/>
                                                 <label for="us-female">
                                                     Female
                                                 </label>
-                                                <input type="radio" id="us-male" name="gender" value="Male" ng-model="member.gender"/>
+                                                <input type="radio" id="us-male" name="gender" value="Male" ng-model="edit.gender"/>
                                                 <label for="us-male">
                                                     Male
                                                 </label>
                                             </div>
-                                        </div>
-                                        <div class="row buttons-widget">
-                                            <a class="btn btn-primary btn-o btn-wide" ng-click="saveChanges(Form)" ng-disabled="Form.$dirty != true">
-                                                Save Changes
-                                            </a>
-                                            <a class="btn btn-default btn-o btn-wide" href="#" ng-disabled="Form.$dirty != true">
-                                               Cancel
-                                            </a>
+                                        <div class="text-right">
+                                            <button class="btn btn-primary btn-o btn-wide" ng-click="saveChanges(Form)" ng-disabled="Form.$dirty != true">
+                                                Save Changes <i class="fa fa-save"></i>
+                                            </button>
+                                            <button class="btn btn-primary btn-o btn-wide" ng-click="discardChanges(Form)" ng-disabled="Form.$dirty != true">
+                                                Discard Changes <i class="fa fa-trash"></i>
+                                            </button>
+
                                         </div>
                                     </div>
                                     </div>
@@ -240,11 +244,11 @@
                     <!-- end: TAB EDIT ACCOUNT -->
                     <!-- start: TAB PROJECTS -->
                     <tab heading="Tithe History">
-
+                        <h3>Feature coming soon!</h3>
                     </tab>
 
                     <tab heading="Attendance History">
-
+                         <h3>Feature coming soon!</h3>
                     </tab>
                     <!-- end: TAB PROJECTS -->
                 </tabset>

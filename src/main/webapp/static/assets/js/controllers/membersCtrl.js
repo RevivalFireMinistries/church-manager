@@ -12,7 +12,7 @@ app.controller('MembersCtrl', function ($scope, $state,SweetAlert,Members,$filte
     var data = {};
     waitingDialog.show('Please Wait...');
 
-     if (!angular.isDefined($localStorage.members)) {
+     if (true) {
 
          //load from REST
          console.log("No members in local...load from rest")
@@ -190,6 +190,7 @@ app.controller('ViewMemberCtrl', function ($scope, $state, $stateParams,$localSt
     var memberId = $stateParams.id;
 
     $scope.member = {};
+    $scope.edit = {};
 
     var found = false;
 
@@ -197,6 +198,7 @@ app.controller('ViewMemberCtrl', function ($scope, $state, $stateParams,$localSt
         for(var i = 0; i < $localStorage.members.length;i++){
             if(memberId == $localStorage.members[i].id){
                 $scope.member = $localStorage.members[i];
+                angular.copy($scope.member,$scope.edit);
                 found = true;
                 break;
             }
@@ -214,15 +216,57 @@ app.controller('ViewMemberCtrl', function ($scope, $state, $stateParams,$localSt
     $scope.saveChanges = function(form) {
 
         if(form.$valid){
-            Members.edit($scope.member,function(response){
+           $scope.edited = difference($scope.member,$scope.edit);
+            $scope.edited.id = $scope.member.id;
+            Members.edit($scope.edited,function(response){
 
                 if(response.status == 0){
+                   $scope.member = angular.copy($scope.edit);
                    $scope.success = "Member details have been updated successfully";
+                    toaster.pop('success', 'Success', 'Changes have been saved');
+                    form.$setPristine();
                 }else{
                    $scope.error = response.message;
                 }
             });
+        }else{
+            toaster.pop('error', 'Error', 'Form invalid - cannot save changes');
         }
+    }
+
+    $scope.discardChanges = function(Form){
+        $scope.edit = angular.copy($scope.member);
+        Form.$setPristine();
+        toaster.pop('info', 'Info', 'Changes have been discarded');
+    }
+
+    $scope.deleteMember = function(Form){
+        Members.delete($scope.member.id,function(response){
+
+            if(response.status == 0){
+                $state.go("app.members.view");
+                toaster.pop('success', 'success', response.message);
+            }else{
+                toaster.pop('error', 'error', response.message);
+            }
+        });
+    }
+
+    function difference(template, override) {
+        var ret = {};
+        for (var name in template) {
+            if (name in override) {
+                if (_.isObject(override[name]) && !_.isArray(override[name])) {
+                    var diff = difference(template[name], override[name]);
+                    if (!_.isEmpty(diff)) {
+                        ret[name] = diff;
+                    }
+                } else if (!_.isEqual(template[name], override[name])) {
+                    ret[name] = override[name];
+                }
+            }
+        }
+        return ret;
     }
 
 });

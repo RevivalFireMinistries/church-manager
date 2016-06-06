@@ -27,16 +27,16 @@ angular.module('esavvy.services', [])
                     });
             },
             edit:function(member,callback){
-                $http.put(REST_SERVER+'/assemblies/'+$localStorage.user.assembly+'/member/'+member.id, {
-                    params: {
-                        data: member
-                    }
-                }).then(function (response) {
+                $http.put(REST_SERVER+'/assemblies/'+$localStorage.user.assembly+'/member/'+member.id,member).
+                    then(function (response) {
                     callback(response.data);
                 });
             },
-            delete:function(id){
-
+            delete:function(id,callback){
+                $http.delete(REST_SERVER+'/assemblies/'+$localStorage.user.assembly+'/member/'+id).
+                    then(function (response) {
+                        callback(response.data);
+                    });
             },
             get: function(memberId) {
                 return $http.get(REST_SERVER+'/ws/member/'+memberId).
