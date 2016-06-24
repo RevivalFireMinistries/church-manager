@@ -15,13 +15,13 @@ angular.module('esavvy.controllers', [])
      }
 
 })
-.controller('ReportsController', ['$scope','Reports', function($scope, Reports) {
-    console.log("show create report form...");
+.controller('EventsController', ['$scope','Events', function($scope, Events) {
+    console.log("show create event form...");
     $scope.report = {};
     $scope.NumberRegex = /^\d+(\.\d{1,3})?$/;
 
     $scope.processForm = function(){
-        console.log("now submitting the report...")
+        console.log("now submitting the event...")
 
     }
 
@@ -30,10 +30,10 @@ angular.module('esavvy.controllers', [])
             // check to make sure the form is completely valid
             if ($scope.reportForm
                     .$valid) {
-                Reports.create(JSON.stringify($scope.report) )
+                Events.create(JSON.stringify($scope.event) )
                 $scope.success = true;
                 $scope.reportForm.$setPristine();
-                $scope.report={};
+                $scope.event={};
             }else{
                 $scope.errors = true;
             }

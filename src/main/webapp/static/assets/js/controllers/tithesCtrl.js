@@ -4,7 +4,7 @@
  */
 
 
-app.controller('TitheCtrl', function ($scope, $state,SweetAlert,Members,$localStorage,Tithe) {
+app.controller('TitheCtrl', function ($scope, $state,SweetAlert,Members,$localStorage,Tithe,toaster) {
 
     $scope.tithes = [];
     $scope.members = $localStorage.members;
@@ -30,20 +30,29 @@ app.controller('TitheCtrl', function ($scope, $state,SweetAlert,Members,$localSt
                 }
 
                 angular.element('.ng-invalid[name=' + firstError + ']').focus();
-                SweetAlert.swal("Tithe cannot be submitted because it contains validation errors!", "Errors are marked with a red, dashed border!", "error");
+                toaster.pop('error', 'Error', 'Failed to submit form : validation errors!');
                 return;
 
             } else {
                 if(!checkIfExistsInList($scope.tithe)){
+                    waitingDialog.show('Please Wait...');
+                    Tithe.create($scope.tithe,function(response){
+                        if(response.status === 0){
+                            $scope.success = "Tithe has been sent successfully";
+                            toaster.pop('success', 'Success', 'Tithe has been sent successfully');
+                            $scope.tithes.push($scope.tithe);
+                            $scope.tithe = {};
+                            form.$setPristine(true);
+                            waitingDialog.hide();
+                        }else{
+                            toaster.pop('error', 'Error', response.message);
+                            waitingDialog.hide();
+                        }
+                    });
 
-                    SweetAlert.swal("Success", "Your tithe has been added to the list", "success");
-                    //your code for submit
-                    $scope.tithes.push($scope.tithe);
-                    $scope.tithe = {};
-                    form.$setPristine(true);
                 }
                 else{
-                    SweetAlert.swal("Hey...","Looks like you already have a similar transaction on the list", "warning");
+                    toaster.pop('warning', 'Hey!', 'Looks like you have a similar transaction on the list already');
                     return;
                 }
 
@@ -61,18 +70,7 @@ app.controller('TitheCtrl', function ($scope, $state,SweetAlert,Members,$localSt
 
 
     $scope.saveTithes = function(){
-        waitingDialog.show('Please Wait...');
-        Tithe.addTithes($scope.tithes,function(response){
-            if(response.success = true){
-                $scope.success = "Tithes have been processed successfully";
-                $state.go("app.dashboard");
-                SweetAlert.swal("OK","Tithes have been processed successfully", "success");
-                waitingDialog.hide();
-            }else{
-                SweetAlert.swal("Error","Failed to process tithes on server", "error");
-                waitingDialog.hide();
-            }
-        })
+        $state.go("app.dashboard");
     };
 
 
@@ -83,7 +81,7 @@ app.controller('TitheCtrl', function ($scope, $state,SweetAlert,Members,$localSt
         }
 
         for(var i=0;i<$scope.tithes.length;i++){
-            if(((tithe.member.id === $scope.tithes[i].member.id) && (moment(tithe.date).isSame(moment($scope.tithes[i].date)))) && (tithe.amount == $scope.tithes[i].amount) ){
+            if(((tithe.member.id === $scope.tithes[i].member.id) && (moment(tithe.txndate).isSame(moment($scope.tithes[i].txndate)))) && (tithe.amount == $scope.tithes[i].amount) ){
                 return true;
             }
         }

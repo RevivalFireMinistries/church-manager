@@ -74,9 +74,9 @@
         "NESTABLE": "Nestable List",
         "TYPOGRAPHY": "Typography"
       },
-      "reports": {
-        "MAIN": "Reports",
-        "NEW": "New Report",
+      "events": {
+        "MAIN": "Events",
+        "NEW": "New Event Report",
         "RESPONSIVE": "Responsive Tables",
         "DATA": "ngTable"
       },

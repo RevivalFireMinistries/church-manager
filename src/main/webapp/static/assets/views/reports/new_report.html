@@ -31,7 +31,7 @@
                     <label class="control-label">
                         Select Service Type <span class="symbol required"></span>
                     </label>
-                    <select class="cs-select cs-skin-elastic" id="serviceType" ng-model="report.eventType" name="serviceType"required>
+                    <select class="cs-select cs-skin-elastic" id="serviceType" ng-model="event.eventType" name="serviceType"required>
                         <option value="" disabled selected>Select a Type</option>
                         <option value="Sunday">Sunday Service</option>
                         <option value="Midweek">Midweek Service</option>
@@ -43,7 +43,7 @@
                     <label class="control-label">
                         Service Date <span class="symbol required"></span>
                     </label>
-                   <input  class="form-control datepicker" ng-model="report.eventDateString" type="date" name="eventDateString" required>
+                   <input  class="form-control datepicker" ng-model="event.eventDate" type="date" name="eventDateString" required>
 
                     <span class="error text-small block" ng-if="Form.eventDateString.$dirty && Form.eventDateString.$invalid">Event date cannot be blank</span>
 
@@ -56,7 +56,7 @@
                         <div class="input-group-addon">
                             R
                         </div>
-                        <input type="number" placeholder="Enter the total tithes amount" class="form-control" name="tithes" ng-model="report.tithes" ng-required="true" />
+                        <input type="number" placeholder="Enter the total tithes amount" class="form-control" name="tithes" ng-model="event.tithes" ng-required="true" />
                     </div>
 
                     <span class="error text-small block" ng-if="Form.tithes.$dirty && Form.tithes.$invalid">Tithes can only be numbers</span>
@@ -70,7 +70,7 @@
                     <div class="input-group-addon">
                         R
                     </div>
-                    <input type="number" placeholder="Enter the total offerings amount" class="form-control" name="offerings" ng-model="report.offerings" required />
+                    <input type="number" placeholder="Enter the total offerings amount" class="form-control" name="offerings" ng-model="event.offerings" required />
                     <span class="error text-small block" ng-if="Form.offerings.$dirty && Form.offerings.$invalid">Offerings can only be numbers</span>
                     </div>
                 </div>
@@ -80,18 +80,57 @@
                     </label>
                     <div class="input-group">
 
-                        <input type="number" placeholder="Enter the attendance" class="form-control" name="attendance" ng-model="report.attendance" required />
+                        <input type="number" placeholder="Enter the attendance" class="form-control" name="attendance" ng-model="event.attendance" required />
                         <span class="error text-small block" ng-if="Form.attendance.$dirty && Form.attendance.$invalid">Attendance can only be numbers</span>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{'has-error':Form.comment.$dirty && Form.comment.$invalid, 'has-success':Form.comment.$valid}">
+                <div class="form-group" ng-class="{'has-error':Form.attendance.$dirty && Form.attendance.$invalid, 'has-success':Form.attendance.$valid}">
                     <label class="control-label">
-                        Comment <span class="symbol required"></span>
+                        Any new converts?<span class="symbol required"></span>
+                    </label>
+                    <div class="input-group">
+
+                        <input type="number" placeholder="Enter the number of converts" class="form-control" name="converts" ng-model="event.converts" />
+                        <span class="error text-small block" ng-if="Form.converts.$dirty && Form.converts.$invalid">Converts can only be numbers</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':Form.comment1.$dirty && Form.comment1.$invalid, 'has-success':Form.comment1.$valid}">
+                    <label class="control-label">
+                        How was the Praise and Worship? <span class="symbol required"></span>
                     </label>
 
-                        <textarea placeholder="Please enter a brief comment about the service" id="form-field-22" class="form-control" ng-model="report.comment" name="comment" required></textarea>
-                        <span class="error text-small block" ng-if="Form.comment.$dirty && Form.comment.$invalid">Comment cannot be blank</span>
+                        <textarea placeholder="Please enter a brief comment about the praise and worship" id="form-field-22" class="form-control" ng-model="comment.comment1" name="comment1" required></textarea>
+                        <span class="error text-small block" ng-if="Form.comment1.$dirty && Form.comment1.$invalid">Comment cannot be blank</span>
                       </div>
+
+                <div class="form-group" ng-class="{'has-error':Form.comment2.$dirty && Form.comment2.$invalid, 'has-success':Form.comment2.$valid}">
+                    <label class="control-label">
+                        How was the Word? <span class="symbol required"></span>
+                    </label>
+
+                    <textarea placeholder="Please enter a brief comment about the Word" id="form-field-23" class="form-control" ng-model="comment.comment2" name="comment2" required></textarea>
+                    <span class="error text-small block" ng-if="Form.comment2.$dirty && Form.comment2.$invalid">Comment cannot be blank</span>
+                </div>
+
+
+                <div class="form-group" ng-class="{'has-error':Form.comment3.$dirty && Form.comment3.$invalid, 'has-success':Form.comment3.$valid}">
+                    <label class="control-label">
+                        How was the auditorium setup? <span class="symbol required"></span>
+                    </label>
+
+                    <textarea placeholder="Please enter a brief comment about the auditorium setup" id="form-field-27" class="form-control" ng-model="comment.comment3" name="comment3" required></textarea>
+                    <span class="error text-small block" ng-if="Form.comment3.$dirty && Form.comment3.$invalid">Comment cannot be blank</span>
+                </div>
+
+
+                <div class="form-group" ng-class="{'has-error':Form.comment4.$dirty && Form.comment4.$invalid, 'has-success':Form.comment4.$valid}">
+                    <label class="control-label">
+                        What do you think needs to be addressed?  <span class="symbol required"></span>
+                    </label>
+
+                    <textarea placeholder="Please enter a brief comment about what you think needs to be addressed" id="form-field-25" class="form-control" ng-model="comment.comment4" name="comment4" required></textarea>
+                    <span class="error text-small block" ng-if="Form.comment4.$dirty && Form.comment4.$invalid">Comment cannot be blank</span>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="pull-right">
@@ -104,17 +143,6 @@
                         </div>
                     </div>
                 </div>
-                <h4>Popup</h4>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="input-group">
-                            <input type="text" class="form-control" uib-datepicker-popup="dd-MM-YYYY" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-                        </p>
-                    </div>
-</div>
                 </fieldset>
             </div>
         </div>

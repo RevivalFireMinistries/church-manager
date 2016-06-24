@@ -167,16 +167,16 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'Typography'
         }
-    }).state('app.reports', {
-        url: '/reports',
+    }).state('app.events', {
+        url: '/events',
         template: '<div ui-view class="fade-in-up"></div>',
-        title: 'Reports',
-        controller: 'ReportsCtrl',
+        title: 'Events',
+        controller: 'EventsCtrl',
         ncyBreadcrumb: {
-            label: 'Reports'
+            label: 'Events'
         },
-        resolve: loadSequence('reportsCtrl')
-    }).state('app.reports.new', {
+        resolve: loadSequence('eventsCtrl')
+    }).state('app.events.new', {
         url: '/new',
         templateUrl: "static/assets/views/reports/new_report.html",
         title: 'Capture Service Report',

@@ -12,7 +12,7 @@
                     </button>
                     {{error}}
                 </div>
-                <div class="alert alert-info" ng-show="success != null">
+                <div class="alert alert-success" ng-show="success != null">
                     <button data-ct-dismiss="alert" class="close">
                         &times;
                     </button>
@@ -38,7 +38,7 @@
                         <label class="control-label">
                             Tithe Date <span class="symbol required"></span>
                         </label>
-                        <input  class="form-control datepicker" ng-model="tithe.date" type="date" name="date" required>
+                        <input  class="form-control datepicker" ng-model="tithe.datecreated" type="date" name="datecreated" required>
                         <span class="error text-small block" ng-if="Form.date.$dirty && Form.date.$error.required">Date is required.</span>
                     </div>
                     <div class="form-group" ng-class="{'has-error':Form.amount.$dirty && Form.amount.$invalid, 'has-success':Form.amount.$valid}">
@@ -57,7 +57,7 @@
                     </div>
 
                 <button type="submit" class="btn btn-primary">
-                    Add Tithe to List
+                    Save Tithe
                 </button>
                 <button type="reset" class="btn btn-primary btn-o" ng-click="form.reset(Form)">
                     Clear Form
@@ -71,27 +71,24 @@
 <div class="container-fluid container-fullw bg-white" ng-show="tithes.length">
     <div class="row">
         <div class="col-md-12">
-            <h5 class="over-title margin-bottom-15">Tithe  <span class="text-bold">List</span></h5>
+            <h5 class="over-title margin-bottom-15">Submitted Tithe  <span class="text-bold">List</span></h5>
             <table class="table table-hover" id="sample-table-1">
                 <thead>
-                <tr>
-                   <td colspan="4">     <button type="button" class="btn  btn-primary" ng-click="saveTithes()">
-                      Submit ALL Tithes
-                   </button></td>
-                </tr>
                 <tr>
                     <th class="center">#</th>
                     <th>Name</th>
                     <th class="hidden-xs">Date</th>
                     <th>Amount</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="t in tithes">
                     <td class="center">{{$index + 1}}</td>
                     <td>{{t.member.firstName}} {{t.member.lastName}}</td>
-                    <td  class="hidden-xs">{{t.date | date:'dd/MM/yyyy'}}</td>
+                    <td  class="hidden-xs">{{t.datecreated | date:'dd/MM/yyyy'}}</td>
                     <td>{{t.amount | currency : 'R'}} </td>
+                    <td><span class="label label-sm label-success">Message Sent</span></td>
                 </tr>
                 </tbody>
                 </table>

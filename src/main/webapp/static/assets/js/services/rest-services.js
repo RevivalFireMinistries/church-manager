@@ -47,7 +47,7 @@ angular.module('esavvy.services', [])
 
         }
     }])
-    .factory('Reports',['$http','REST_SERVER', function($http,REST_SERVER) {
+    .factory('Events',['$http','REST_SERVER','$localStorage', function($http,REST_SERVER,$localStorage) {
         console.log("Rest server url "+REST_SERVER)
         var members = [];
         return {
@@ -58,20 +58,10 @@ angular.module('esavvy.services', [])
                     });
             },
             create:function(data,callback){
-                var url = REST_SERVER+'/ws/member/event/add/';
-                var req = {
-                    method: 'POST',
-                    url: url,
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    data: data
-                }
-                return $http(req).
-                    then(function (response) {
-                    callback(response);
-                });
+                $http.post(REST_SERVER+'/assemblies/'+$localStorage.user.assembly+'/event/',data).
+                    then(function(response){
+                        callback(response.data);
+                    });
             },
             edit:function(id,data){
 
@@ -114,33 +104,16 @@ angular.module('esavvy.services', [])
             }
         }
     }])
-    .factory('Tithe', ['$http','REST_SERVER','$state',function($http,REST_SERVER){
-        var user;
+    .factory('Tithe', ['$http','REST_SERVER','$localStorage',function($http,REST_SERVER,$localStorage,$q) {
 
-        return{
-            addTithes : function(tithe,callback){
-                var tithejson = JSON.stringify(tithe);
-                var url = REST_SERVER+'/ws/member/tithe/add/';
-
-                var config = {
-                    headers : {
-                        'Content-Type': 'application/json;charset=utf-8;'
-                    }
-                }
-                return $http.post(url,tithejson,config).
-                    then(function (data) {
-                        var result = data.data;
-                        if (result !== null) {
-                            response = result.success;
-                        } else {
-                            response = { success: false, message: 'Failed to post tithe transactions to server' };
-                        }
-                        callback(response,result);
-                    },function(error){
-                        console.log(error);
-                        callback(error);
+        return {
+            create:function(tithe,callback){
+                $http.post(REST_SERVER+'/member/'+tithe.member.id+'/tithe/',tithe).
+                    then(function(response){
+                        callback(response.data);
                     });
             }
         }
-    }])
-;
+    }]);
+
+
