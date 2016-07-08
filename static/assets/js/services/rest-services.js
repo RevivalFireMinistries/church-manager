@@ -1,7 +1,7 @@
 angular.module('esavvy.services', [])
 
-    //.constant('REST_SERVER', 'http://esavvy.rfm.org.za')
-    .constant('REST_SERVER', 'http://localhost:8000')
+    //.constant('REST_SERVER', 'http://41.185.27.50:3140')
+    .constant('REST_SERVER', 'http://localhost:3140')
 
 
     .factory('Members',['$http','REST_SERVER','$localStorage', function($http,REST_SERVER,$localStorage) {
