@@ -50,6 +50,10 @@ function ($rootScope, $scope, $state, $translate, $localStorage, $window, $docum
     $rootScope.pageTitle = function () {
         return $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
     };
+    $rootScope.user = function () {
+        return $localStorage.user;
+    };
+
 
     // save settings to local storage
     if (angular.isDefined($localStorage.layout)) {

@@ -19,7 +19,7 @@ function ($rootScope, $state, $stateParams,$localStorage,$location) {
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
-        name: 'eSavvy', // name of your project
+        name: 'Fire Manager', // name of your project
         author: 'rfmDigitalMedia', // author's name or company name
         description: 'Intelligent Church Management', // brief description
         version: '2.0', // current version
@@ -36,7 +36,7 @@ function ($rootScope, $state, $stateParams,$localStorage,$location) {
             isSidebarFixed: true, // true if you want to initialize the template with fixed sidebar
             isSidebarClosed: false, // true if you want to initialize the template with closed sidebar
             isFooterFixed: false, // true if you want to initialize the template with fixed footer
-            theme: 'theme-1', // indicate the theme chosen for your project
+            theme: 'theme-2', // indicate the theme chosen for your project
             logo: 'static/assets/images/logo.png' // relative path of the project logo
         }
     };
