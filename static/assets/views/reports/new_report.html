@@ -14,7 +14,7 @@
 <section id="page-title">
     <div class="row">
         <div class="col-sm-8">
-            <h1 class="mainTitle" translate="sidebar.nav.reports.NEW">{{ title }}</h1>
+            <h1 class="mainTitle" translate="sidebar.nav.events.NEW">{{ title }}</h1>
             <span class="mainDescription">Ensure that the correct information is captured</span>
         </div>
         <div ncy-breadcrumb></div>
@@ -84,7 +84,7 @@
                         <span class="error text-small block" ng-if="Form.attendance.$dirty && Form.attendance.$invalid">Attendance can only be numbers</span>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{'has-error':Form.attendance.$dirty && Form.attendance.$invalid, 'has-success':Form.attendance.$valid}">
+                <div class="form-group" ng-class="{'has-error':Form.converts.$dirty && Form.converts.$invalid, 'has-success':Form.attendance.$valid}">
                     <label class="control-label">
                         Any new converts?<span class="symbol required"></span>
                     </label>
