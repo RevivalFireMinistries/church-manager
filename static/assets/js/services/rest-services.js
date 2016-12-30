@@ -3,6 +3,7 @@ angular.module('esavvy.services', [])
     //.constant('REST_SERVER', 'http://41.185.27.50:3140')
     .constant('REST_SERVER', 'http://localhost:3140')
 
+
     .factory('Members',['$http','REST_SERVER','$localStorage', function($http,REST_SERVER,$localStorage) {
         console.log("Rest server url "+REST_SERVER)
         var members = [];
@@ -97,7 +98,7 @@ angular.module('esavvy.services', [])
                     },
                     function(err) {
                         console.log(err); // Error: "It broke"
-                        response = { status: 0, message: 'Log in failed' };
+                        response = { status: 0, message: 'Server error' };
                         callback(response);
                     });
             }
