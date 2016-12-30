@@ -33,7 +33,10 @@ app.controller('LoginCtrl', function ($scope, $state,SweetAlert,Members,$filter,
 
     $scope.doLogin = function() {
         waitingDialog.show('Please Wait...');
-        Auth.getUser($scope.user, function (response) {
+        var user = {};
+        user.username = $scope.user.username;
+        user.password = $scope.user.password;
+        Auth.getUser(JSON.stringify(user), function (response) {
             if (response.status == 0 && response.user != null) {
                 $state.go("app.dashboard");
                 $localStorage.user = response.user;
