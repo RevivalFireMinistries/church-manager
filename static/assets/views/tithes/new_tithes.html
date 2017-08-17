@@ -4,7 +4,7 @@
             <div class="panel-heading">
                 <h5 class="panel-title">New Tithe Entry</h5>
             </div>
-            <form name="Form" id="form1" novalidate ng-submit="form.submit(Form)">
+            <form name="Form" id="form1" novalidate ng-submit="form.submit(Form)" ng-show="members">
             <div class="panel-body">
                 <div class="alert alert-danger" ng-show="error != null">
                     <button data-ct-dismiss="alert" class="close">
@@ -64,6 +64,12 @@
                 </button>
             </div>
             </form>
+            <div class="alert alert-danger" ng-show="error != null">
+                <button data-ct-dismiss="alert" class="close">
+                    &times;
+                </button>
+                {{error}}
+            </div>
         </div>
     </div>
     </div>

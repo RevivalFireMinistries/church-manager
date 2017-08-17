@@ -12,7 +12,7 @@ app.controller('MembersCtrl', function ($scope, $state,SweetAlert,Members,$filte
     var data = {};
     waitingDialog.show('Please Wait...');
 
-     if (true) {
+     if (!$localStorage.members) {
 
          //load from REST
          console.log("No members in local...load from rest")

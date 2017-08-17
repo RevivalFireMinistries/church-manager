@@ -99,8 +99,8 @@
                         How was the Praise and Worship? <span class="symbol required"></span>
                     </label>
 
-                        <textarea placeholder="Please enter a brief comment about the praise and worship" id="form-field-22" class="form-control" ng-model="comment.comment1" name="comment1" required></textarea>
-                        <span class="error text-small block" ng-if="Form.comment1.$dirty && Form.comment1.$invalid">Comment cannot be blank</span>
+                        <textarea placeholder="Please enter a brief comment about the praise and worship" id="form-field-22" class="form-control" ng-model="comment.comment1" name="comment1" ng-minlength="20" required></textarea>
+                        <span class="error text-small block" ng-if="Form.comment1.$dirty && Form.comment1.$invalid">Comment blank or too short</span>
                       </div>
 
                 <div class="form-group" ng-class="{'has-error':Form.comment2.$dirty && Form.comment2.$invalid, 'has-success':Form.comment2.$valid}">
@@ -108,8 +108,8 @@
                         How was the Word? <span class="symbol required"></span>
                     </label>
 
-                    <textarea placeholder="Please enter a brief comment about the Word" id="form-field-23" class="form-control" ng-model="comment.comment2" name="comment2" required></textarea>
-                    <span class="error text-small block" ng-if="Form.comment2.$dirty && Form.comment2.$invalid">Comment cannot be blank</span>
+                    <textarea placeholder="Please enter a brief comment about the Word" id="form-field-23" class="form-control" ng-model="comment.comment2" name="comment2" ng-minlength="20" required></textarea>
+                    <span class="error text-small block" ng-if="Form.comment2.$dirty && Form.comment2.$invalid">Comment blank or too short</span>
                 </div>
 
 
@@ -118,8 +118,8 @@
                         How was the auditorium setup? <span class="symbol required"></span>
                     </label>
 
-                    <textarea placeholder="Please enter a brief comment about the auditorium setup" id="form-field-27" class="form-control" ng-model="comment.comment3" name="comment3" required></textarea>
-                    <span class="error text-small block" ng-if="Form.comment3.$dirty && Form.comment3.$invalid">Comment cannot be blank</span>
+                    <textarea placeholder="Please enter a brief comment about the auditorium setup" id="form-field-27" class="form-control" ng-model="comment.comment3" name="comment3" ng-minlength="20" required></textarea>
+                    <span class="error text-small block" ng-if="Form.comment3.$dirty && Form.comment3.$invalid">Comment blank or too short</span>
                 </div>
 
 
@@ -128,8 +128,8 @@
                         What do you think needs to be addressed?  <span class="symbol required"></span>
                     </label>
 
-                    <textarea placeholder="Please enter a brief comment about what you think needs to be addressed" id="form-field-25" class="form-control" ng-model="comment.comment4" name="comment4" required></textarea>
-                    <span class="error text-small block" ng-if="Form.comment4.$dirty && Form.comment4.$invalid">Comment cannot be blank</span>
+                    <textarea placeholder="Please enter a brief comment about what you think needs to be addressed" id="form-field-25" class="form-control" ng-model="comment.comment4" name="comment4" ng-minlength="20" required></textarea>
+                    <span class="error text-small block" ng-if="Form.comment4.$dirty && Form.comment4.$invalid">Comment blank or too short</span>
                 </div>
                 <div class="row">
                     <div class="col-md-12">

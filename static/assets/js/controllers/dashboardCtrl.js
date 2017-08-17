@@ -2,10 +2,8 @@
 /** 
   * controllers used for the dashboard
 */
-app.controller('SparklineCtrl', function ($scope) {
-    $scope.sales = [600, 923, 482, 1211, 490, 1125, 1487];
-    $scope.earnings = [400, 650, 886, 443, 502, 412, 353];
-    $scope.referrals = [4879, 6567, 5022, 5890, 9234, 7128, 4811];
+app.controller('DashBoardCtrl', function ($scope,$localStorage) {
+    $scope.user = $localStorage.user;
 });
 
 app.controller('VisitsCtrl', function ($scope) {

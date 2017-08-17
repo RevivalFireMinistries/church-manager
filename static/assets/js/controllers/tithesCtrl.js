@@ -7,8 +7,22 @@
 app.controller('TitheCtrl', function ($scope, $state,SweetAlert,Members,$localStorage,Tithe,toaster) {
 
     $scope.tithes = [];
-    $scope.members = $localStorage.members;
     $scope.tithe = {};
+
+    if($localStorage.members){
+        $scope.members = $localStorage.members;
+    }else{
+        Members.all($localStorage.user.assemblyId, function (response,members) {
+            if (response.success) {
+
+                $localStorage.members = members;
+                $scope.members = members;
+            }else{
+                $state.go("app.dashboard");
+                toaster.pop('error', 'Error', 'Failed to load members from server');
+            }
+        });
+    }
 
     $scope.form = {
 
