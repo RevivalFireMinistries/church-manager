@@ -9,6 +9,10 @@ function ($rootScope, $scope, $state, $translate, $localStorage, $window, $docum
     // -----------------------------------
     var $win = $($window);
 
+    if($localStorage.user){
+        $rootScope.user = $localStorage.user;
+    }
+
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         //start loading bar on stateChangeStart
         cfpLoadingBar.start();

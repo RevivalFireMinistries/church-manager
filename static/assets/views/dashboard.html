@@ -2,8 +2,8 @@
 <section id="page-title" class="padding-top-15 padding-bottom-15">
 	<div class="row">
 		<div class="col-sm-7">
-			<h1 class="mainTitle" translate="dashboard.WELCOME" translate-values="{ appName: app.name }">{{ mainTitle }}</h1>
-			<span class="mainDescription">Logged in as : {{user.firstName user.lastName}} </span>
+			<h1 class="mainTitle" translate="dashboard.WELCOME" translate-values="{ appName: app.name }">Welcome!</h1>
+			<span class="mainDescription">Logged in as : <b>{{user.firstName}} {{user.lastName}}</b> </span>
 		</div>
 		<div class="col-sm-5">
 			<!-- start: MINI STATS WITH SPARKLINE -->
@@ -14,7 +14,7 @@
 						<span jq-sparkline ng-model="sales" type="bar" height="20px" bar-color="#D43F3A"></span>
 					</div>
 					<div class="values">
-						<strong class="text-dark">18304</strong>
+						<strong class="text-dark"></strong>
 						<p class="text-small no-margin">
 							 Attendance
 						</p>
@@ -25,7 +25,7 @@
 						<span jq-sparkline ng-model="earnings" type="bar" height="20px" bar-color="#5CB85C"></span>
 					</div>
 					<div class="values">
-						<strong class="text-dark">&#36;3,833</strong>
+						<strong class="text-dark"></strong>
 						<p class="text-small no-margin">
 							 Tithes
 						</p>
@@ -36,7 +36,7 @@
 						<span jq-sparkline ng-model="referrals" type="bar" height="20px" bar-color="#46B8DA"></span>
 					</div>
 					<div class="values">
-						<strong class="text-dark">&#36;848</strong>
+						<strong class="text-dark"></strong>
 						<p class="text-small no-margin">
 							Offering
 						</p>
