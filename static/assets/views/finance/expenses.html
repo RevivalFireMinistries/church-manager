@@ -1,0 +1,87 @@
+<!-- start: PAGE TITLE -->
+<style>
+    .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
+    }
+    .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
+    }
+</style>
+<section id="page-title">
+    <div class="row">
+        <div class="col-sm-8">
+            <h1 class="mainTitle" translate="sidebar.nav.finance.NEW">{{ title }}</h1>
+            <span class="mainDescription">Ensure that the correct information is captured</span>
+        </div>
+        <div ncy-breadcrumb></div>
+    </div>
+</section>
+<form name="Form" id="form1" novalidate ng-submit="form.submit(Form)">
+    <div class="row">
+        <div class="col-md-6">
+            <fieldset>
+                <legend>
+                    Fill in the details below
+                </legend>
+
+                <div class="form-group" ng-class="{'has-error':Form.txnDateString.$dirty && Form.txnDateString.$invalid, 'has-success':Form.txnDateString.$valid}">
+                    <label class="control-label">
+                        Date of transaction<span class="symbol required"></span>
+                    </label>
+                    <input  class="form-control datepicker" ng-model="event.eventDate" type="date" name="eventDateString" required>
+
+                    <span class="error text-small block" ng-if="Form.txnDateString.$dirty && Form.txnDateString.$invalid">Transaction date cannot be blank</span>
+
+                </div>
+                <div class="form-group" ng-class="{'has-error':Form.transaction.$dirty && Form.transaction.$invalid, 'has-success':Form.transaction.$valid}">
+                    <label class="control-label">
+                        Amount <span class="symbol required"></span>
+                    </label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            R
+                        </div>
+                        <input type="number" placeholder="Enter the amount" class="form-control" name="amount" ng-model="transaction.amount" ng-required="true" />
+                    </div>
+
+                    <span class="error text-small block" ng-if="Form.amount.$dirty && Form.transaction.$invalid">amount can only be numbers</span>
+                    <span class="error text-small block" ng-if="Form.amount.$error.required">amount is required</span>
+                </div>
+                <div class="form-group" ng-class="{'has-error':Form.beneficiary.$dirty && Form.beneficiary.$invalid, 'has-success':Form.beneficiary.$valid}">
+                    <label class="control-label">
+                        Beneficiary <span class="symbol required"></span>
+                    </label>
+
+                    <textarea placeholder="Who was the money paid to?" id="form-field-22" class="form-control" ng-model="transaction.beneficiary" name="beneficiary"  required></textarea>
+                    <span class="error text-small block" ng-if="Form.beneficiary.$dirty && Form.beneficiary.$invalid">Beneficiary blank </span>
+                </div>
+
+                <div class="form-group" ng-class="{'has-error':Form.description.$dirty && Form.description.$invalid, 'has-success':Form.description.$valid}">
+                    <label class="control-label">
+                        Description<span class="symbol required"></span>
+                    </label>
+
+                    <textarea placeholder="What was the expense for?" id="form-field-23" class="form-control" ng-model="transaction.description" name="description"  required></textarea>
+                    <span class="error text-small block" ng-if="Form.description.$dirty && Form.description.$invalid">Description blank </span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-primary btn-o" ng-click="form.reset(Form)">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</form>

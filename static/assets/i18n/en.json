@@ -90,6 +90,16 @@
         "CROPPING": "Image Cropping",
         "UPLOAD": "Multiple File Upload"
       },
+      "finance": {
+        "MAIN": "Finance",
+        "NEW": "Expenses",
+        "XEDITABLE": "X-Editable Elements",
+        "TEXTEDITOR": "Text Editor",
+        "WIZARD": "Form Wizard",
+        "VALIDATION": "Form Validation",
+        "CROPPING": "Image Cropping",
+        "UPLOAD": "Multiple File Upload"
+      },
       "login": {
         "MAIN": "Login",
         "LOGIN": "Login Form",

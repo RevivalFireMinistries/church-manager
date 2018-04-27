@@ -5,16 +5,15 @@
 /**
  * controller for Messages
  */
-app.controller('EventsCtrl', function ($scope, $state,SweetAlert,Events,Finance,$localStorage,toaster) {
+app.controller('FinanceCtrl', function ($scope, $state,SweetAlert,Finance,$localStorage,toaster) {
 
 
-    $scope.event = {};
-    $scope.event.assemblyId = $localStorage.user.assembly;
-    $scope.comment = {};
+    $scope.transaction = {};
+    $scope.assemblyId = $localStorage.user.assembly;
     $scope.eventDateString = "";
 
 
-    $scope.master = $scope.event;
+    $scope.master = $scope.transaction;
     $scope.form = {
 
         submit: function (form) {
@@ -40,31 +39,17 @@ app.controller('EventsCtrl', function ($scope, $state,SweetAlert,Events,Finance,
                 return;
 
             } else {
-                var eventdate = moment($scope.event.eventDate).format('YYYY-MM-DD');
+                var txndate = moment($scope.txnDateString).format('YYYY-MM-DD');
                 //$scope.event.eventDate =  eventdate;
-                $scope.event.comment = "".concat($scope.comment.comment1,"|"+$scope.comment.comment2,"|"+$scope.comment.comment3,"|"+$scope.comment.comment4);
-               //now create a finance dashboard txn
-                var transaction = {
-                     created : eventdate,
-                     type:"Income",
-                     amount:$scope.event.offerings,
-                     description:$scope.event.eventType+" Offering",
-                     beneficiary:"Church"
-                }
-                Finance.create(JSON.stringify(transaction),$scope.event.assemblyId,undefined);
-
-                Events.create(JSON.stringify($scope.event),function(response){
-
+                $scope.transaction.type = "Expense";
+                $scope.transaction.created = txndate;
+                Finance.create(JSON.stringify($scope.transaction),$scope.assemblyId,function(response){
                     waitingDialog.hide();
-                    if(response.status === 0){
-                        $state.go("app.dashboard");
-                        toaster.pop("Success!", "The event has been captured successfully", "success");
+
+                        toaster.pop("Success!", "The expense has been captured successfully", "success");
                         //clear form
-                        $scope.event = angular.copy($scope.master);
+                        $scope.transaction = {};
                         form.$setPristine(true);
-                    }else{
-                        toaster.pop('error',"Error!", response.message);
-                    }
 
                 } );
             }

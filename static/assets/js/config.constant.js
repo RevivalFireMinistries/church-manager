@@ -55,6 +55,7 @@ app.constant('JS_REQUIRES', {
         'membersCtrl': 'static/assets/js/controllers/membersCtrl.js',
         'titheCtrl': 'static/assets/js/controllers/tithesCtrl.js',
         'loginCtrl': 'static/assets/js/controllers/loginCtrl.js',
+        'financeCtrl': 'static/assets/js/controllers/financeCtrl.js',
 
         //*** Filters
         'htmlToPlaintext': 'static/assets/js/filters/htmlToPlaintext.js'

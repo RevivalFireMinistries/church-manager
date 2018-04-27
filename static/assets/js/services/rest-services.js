@@ -1,6 +1,7 @@
 angular.module('esavvy.services', [])
 
     .constant('REST_SERVER', 'http://41.185.27.50:3140')
+    .constant('REST_SERVER_FINANCE', 'http://41.185.27.50:1985')
     //.constant('REST_SERVER', 'http://localhost:3140')
 
 
@@ -108,12 +109,41 @@ angular.module('esavvy.services', [])
 
         return {
             create:function(tithe,callback){
+
                 $http.post(REST_SERVER+'/member/'+tithe.member.id+'/tithe/',tithe).
                     then(function(response){
                         callback(response.data);
                     });
+                    //var externalId = getExternalId(tithe.member.assemblyId);
+                 var txn = {
+                    amount : tithe.amount,
+                    description : "Tithe",
+                    type : "Income",
+                    beneficiary:tithe.member.firstName+" "+tithe.member.lastName
+                 }   
+                $http.post("http://41.185.27.50:1985/transaction/"+tithe.member.assembly,txn).
+                    then(function(response){
+                        console.log("tithe sent to the txn dashboard...")
+                    });
             }
         }
-    }]);
+    }])
+.factory('Finance', ['$http','REST_SERVER','$localStorage',function($http,REST_SERVER,$localStorage,$q) {
 
+    return {
+        create:function(transaction,assemblyId,callback){
+            //var externalId = getExternalId(transaction.assemblyId);
+            $http.post("http://41.185.27.50:1985/transaction/"+assemblyId,transaction).
+            then(function(response){
+                console.log("transaction sent to the txn dashboard...")
+                if(callback)
+                    callback(response.data);
+            });
+        }
+    }
+}]);
+
+function getExternalId(id){
+    return 1;
+}
 

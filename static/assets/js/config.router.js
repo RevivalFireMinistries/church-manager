@@ -220,6 +220,22 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Enter Tithes'
         },
         resolve: loadSequence('ui.select', 'ui.mask', 'monospaced.elastic', 'touchspin-plugin', 'angular-bootstrap-touchspin', 'selectCtrl')
+    }).state('app.finance', {
+        url: '/finance',
+        template: '<div ui-view class="fade-in-up"></div>',
+        title: 'Finance',
+        controller: 'FinanceCtrl',
+        ncyBreadcrumb: {
+            label: 'Finance'
+        },
+        resolve: loadSequence('ngTable','financeCtrl')
+    }).state('app.finance.new', {
+        url: '/expenses',
+        templateUrl: "static/assets/views/finance/expenses.html",
+        title: 'Capture Expenses',
+        ncyBreadcrumb: {
+            label: 'Add Expenses'
+        }
     }).state('app.form.xeditable', {
         url: '/xeditable',
         templateUrl: "static/assets/views/form_xeditable.html",

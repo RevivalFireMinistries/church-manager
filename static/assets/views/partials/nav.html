@@ -96,6 +96,26 @@
 
 		</ul>
 	</li>
+	<li ng-class="{'active open':$state.includes('app.form')}">
+		<a href="javascript:void(0)">
+			<div class="item-content">
+				<div class="item-media">
+					<i class="ti-pencil-alt"></i>
+				</div>
+				<div class="item-inner">
+					<span class="title" translate="sidebar.nav.finance.MAIN"> Finance </span><i class="icon-arrow"></i>
+				</div>
+			</div>
+		</a>
+		<ul class="sub-menu">
+			<li ui-sref-active="active">
+				<a ui-sref="app.finance.new">
+					<span class="title" translate="sidebar.nav.finance.NEW">Expenses </span>
+				</a>
+			</li>
+
+		</ul>
+	</li>
 	<!--<li ng-class="{'active open':$state.includes('login')}">
 		<a href="javascript:void(0)">
 			<div class="item-content">
