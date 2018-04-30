@@ -9,7 +9,7 @@ app.controller('EventsCtrl', function ($scope, $state,SweetAlert,Events,Finance,
 
 
     $scope.event = {};
-    $scope.event.assemblyId = $localStorage.user.assembly;
+/*    $scope.event.assemblyId = $localStorage.user.assembly;*/
     $scope.comment = {};
     $scope.eventDateString = "";
 
