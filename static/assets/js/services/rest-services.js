@@ -116,6 +116,7 @@ angular.module('esavvy.services', [])
                     });
                     //var externalId = getExternalId(tithe.member.assemblyId);
                  var txn = {
+                     created:moment(tithe.datecreated).format('YYYY-MM-DD'),
                     amount : tithe.amount,
                     description : "Tithe",
                     type : "Income",

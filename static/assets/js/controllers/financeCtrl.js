@@ -39,10 +39,8 @@ app.controller('FinanceCtrl', function ($scope, $state,SweetAlert,Finance,$local
                 return;
 
             } else {
-                var txndate = moment($scope.txnDateString).format('YYYY-MM-DD');
-                //$scope.event.eventDate =  eventdate;
                 $scope.transaction.type = "Expense";
-                $scope.transaction.created = txndate;
+                $scope.transaction.created = form.txnDateString.$viewValue;
                 Finance.create(JSON.stringify($scope.transaction),$scope.assemblyId,function(response){
                     waitingDialog.hide();
 

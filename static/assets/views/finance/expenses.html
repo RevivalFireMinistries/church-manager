@@ -32,7 +32,7 @@
                     <label class="control-label">
                         Date of transaction<span class="symbol required"></span>
                     </label>
-                    <input  class="form-control datepicker" ng-model="event.eventDate" type="date" name="eventDateString" required>
+                    <input  class="form-control datepicker" ng-model="txnDate" type="date" name="txnDateString" required>
 
                     <span class="error text-small block" ng-if="Form.txnDateString.$dirty && Form.txnDateString.$invalid">Transaction date cannot be blank</span>
 
