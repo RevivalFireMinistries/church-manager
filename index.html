@@ -27,6 +27,15 @@
 	<link rel="stylesheet" href="static/assets/css/plugins.css">
 	<!-- Clip-Two Theme -->
 	<link rel="stylesheet" data-ng-href="static/assets/css/themes/{{ app.layout.theme }}.css" />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118652961-1"></script>
+	<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-118652961-1');
+	</script>
 </head>
 <body ng-controller="AppCtrl">
 <div ui-view id="app" ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}"></div>
