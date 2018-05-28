@@ -151,6 +151,7 @@ app.controller('NewMembersCtrl', ['$scope', 'toaster','$rootScope','Members','$s
                 }else{
                     waitingDialog.show('Please Wait...');
                     delete $scope.myModel.country;
+                    $scope.myModel.phone = form.phone.$viewValue;
                     Members.create($scope.myModel ,function(response){
                         if(response.status == 0){
                             delete $localStorage.members;  //force server sync
