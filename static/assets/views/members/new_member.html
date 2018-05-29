@@ -118,18 +118,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>
-                                                        Country of Origin
-                                                    </label>
-                                                    <select class="form-control" name="country" ng-model="myModel.country">
-                                                        <option value="">-- Select a Country --</option>
-                                                        <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
                                         </div>
 
                                     </fieldset>
@@ -157,14 +145,14 @@
                                         <legend>
                                             Contact Information
                                         </legend>
-                                        <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid, 'has-success':Form.email.$valid}">
+                        <!--                <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid, 'has-success':Form.email.$valid}">
                                             <label class="control-label">
                                                 Email <span class="symbol required"></span>
                                             </label>
                                             <input type="email" placeholder="Enter a valid E-mail" class="form-control" name="email" ng-model="myModel.email" >
                                             <span class="error text-small block" ng-if="myModel.email.length && Form.email.$error.email">Please, enter a valid email address.</span>
                                             <span class="success text-small" ng-if="myModel.email.length && Form.email.$valid">It's a valid e-mail!</span>
-                                        </div>
+                                        </div>-->
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group" ng-class="{'has-error':Form.phone.$dirty && Form.phone.$invalid, 'has-success':Form.phone.$valid}">
@@ -176,7 +164,7 @@
                                                         <input type="number" class="form-control" ng-minlength="10" ng-maxlength="11" name="phone" placeholder="(071) 999-9999" ui-mask="(999) 999-9999" ng-required="currentStep == 2"  ng-model="myModel.phone" >
                                                         <span class="error text-small block" ng-if="Form.phone.$error.minlength && Form.phone.$dirty">Phone number should be 10 digits</span>
                                                         <span class="error text-small block" ng-if="Form.phone.$error.maxlength && Form.phone.$dirty">Phone number should be 10 digits</span>
-                                                        <span class="success text-small" ng-if="myModel.email.length && Form.email.$valid">Phone number correct!</span>
+                                                        <span class="success text-small" ng-if="myModel.phone.length && Form.phone.$valid">Phone number correct!</span>
                                                     </div>
                                                 </div>
                                             </div>
